@@ -119,11 +119,27 @@ As we showed earlier, a variable's address is a lot like the library catalog num
 
 Now that you understand what a pointer is, you next goal is to learn how to use pointers in your programs. The next few sections will teach you some valuable pointer programming skills. You will learn how to create a pointer to a variable.
 
-The C language provides you with a few key tools to help yo. These tools come in the form of two special operators: & and *.
-
-
+The C language provides you with a few key tools to help yo. These tools come in the form of two special operators: & and \*.
 
 # * [The & operator](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
+
+The & operator, called **address of** operator, is a unary operator that pairs with a variable name to produce the variable's address. The expression:
+
+```c
+variable
+```
+
+retrieves the value store in the **variable** variable, while the expresion:
+
+```c
+&variable
+```
+
+refers to variable's address in memory. If **variable** occupied memory locations 836through 839 (as in figure 7-4), the expression %variable would have a value of 836. The expression $variable is a pointer to the variable **variable**.
+
+An expression like &variable is a common way to obtain the address of a variable. But what ca you do with that address ? Store it into a pointer variable, of course! **A pointer variable is a variable specifically designed to hold the address of another variable.
+
+
 # * [Declaring a Pointer Variable](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [The * Operator](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Computer Architecture and Pointer Sizes](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
