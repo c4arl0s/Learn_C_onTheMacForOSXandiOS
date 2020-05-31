@@ -168,6 +168,50 @@ so now what ?. This is where pointers start to get interesting.
 
 
 # * [The * Operator](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
+
+The complement to the address-of (&) operator is the unary * or indirection operator. It does just the opposite of the & operator. It takes a pointer variable and turns it into the variable the pointer variable points to. Confusing, isn't it ?
+Here is a simple example
+
+---
+Note
+The * operator officially name in the C standard is the "indirection pointer", but it is also commonly referred to as the "start", "pointer" or "dereference operator"
+
+
+```c
+int *pointer;
+int variable;
+
+variable = 3;
+pointer = &variable
+*pointer = 27;
+```
+
+The first assignment statement (variable = 3) makes perfect sense. You have been using that form since Chapter 2. The second assignment statement is only a slight variation of the first. It is still storing a valye into the variable named on the left side of the assignment operator (=), but this time the value is a memory address. At this point, pointer holds the address of variable. So far, so good.
+
+The third assignment statement is the game changer. It copies the value 27 into the memory address pointer to by pointer.
+
+The indirection operator (*) takes the value stored in pointer and treats it like the address of a variable. In other words, the computer will take the memory address stored in the variable pointer and use it to locate the int variable somewhere else in memory, and then store the value 27 there. It still contains the address of variable.
+
+If pointer contains the address of variable, as is the case in our example, referring to *pointer is equivalent to referring to variable. For example, this line
+
+```c
+*pointer = 27
+```
+
+Is the same as this one:
+
+```c
+variable = 27
+```
+
+Still confused? Don't worry, we are going to walk through this again with illustration Figure 7.5 joins our program in progress, just after the variables variable and pointer were declared:
+
+```c
+int *pointer, variable;
+```
+![Screen Shot 2020-05-30 at 19 29 56](https://user-images.githubusercontent.com/24994818/83341698-fa42a380-a2ab-11ea-943f-dde1c1c136fb.png)
+ 
+
 # * [Computer Architecture and Pointer Sizes](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Function Parameters](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Variable Scope](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
