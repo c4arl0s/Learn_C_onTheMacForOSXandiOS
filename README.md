@@ -169,13 +169,13 @@ so now what ?. This is where pointers start to get interesting.
 
 # * [The * Operator](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 
-The complement to the address-of (&) operator is the unary * or indirection operator. It does just the opposite of the & operator. It takes a pointer variable and turns it into the variable the pointer variable points to. Confusing, isn't it ?
+The complement to the **address-of** (&) operator is the unary * or **indirection operator**. It does just the opposite of the & operator. It takes a pointer variable and turns it into the variable the pointer variable points to. Confusing, isn't it ?
 Here is a simple example
 
 ---
 Note
 The * operator officially name in the C standard is the "indirection pointer", but it is also commonly referred to as the "start", "pointer" or "dereference operator"
-
+---
 
 ```c
 int *pointer;
@@ -186,7 +186,7 @@ pointer = &variable
 *pointer = 27;
 ```
 
-The first assignment statement (variable = 3) makes perfect sense. You have been using that form since Chapter 2. The second assignment statement is only a slight variation of the first. It is still storing a valye into the variable named on the left side of the assignment operator (=), but this time the value is a memory address. At this point, pointer holds the address of variable. So far, so good.
+The first assignment statement (variable = 3) makes perfect sense. You have been using that form since Chapter 2. The second assignment statement is only a slight variation of the first. It is still storing a value into the variable named on the left side of the assignment operator (=), but this time the value is a memory address. At this point, pointer holds the address of variable. So far, so good.
 
 The third assignment statement is the game changer. It copies the value 27 into the memory address pointer to by pointer.
 
@@ -210,7 +210,61 @@ Still confused? Don't worry, we are going to walk through this again with illust
 int *pointer, variable;
 ```
 ![Screen Shot 2020-05-30 at 19 29 56](https://user-images.githubusercontent.com/24994818/83341698-fa42a380-a2ab-11ea-943f-dde1c1c136fb.png)
- 
+
+Once memory is allocated for **variable** and **pointer**, you move n to the statement:
+
+```c
+pointer = &variable;
+```
+
+The address of the variable **variable** is stored in the 8 bytes allocated to **pointer**. In this example, **variable** address is 836. Now, **pointer** is said to **point to variable** See figure 7-6
+
+![Screen Shot 2020-05-31 at 16 07 23](https://user-images.githubusercontent.com/24994818/83362694-d8532a80-a358-11ea-9981-02dfcd7d6aa1.png)
+
+Ok, you are almost there. The next line of the example writes the value 27 to the location pointer to by **pointer**.
+
+```c
+*pointer = 27
+```
+
+Without the * operator, the computer would place the value 27 in the memory allocated to **pointer**. The * operator ^**dereferences** **pointer**. Dereferencing a pointer turns the pointer into the variable it points to. Figure 7-7 shows the end results.
+
+![Screen Shot 2020-05-31 at 16 11 22](https://user-images.githubusercontent.com/24994818/83362771-65967f00-a359-11ea-99df-30d311f306a0.png)
+
+If you step through the 07.01 - Pointer object with the debugger, you can watch each of these steps happen. Of course, the address of **variable** will not be 836, but other that that everything else should be consistent with the illustration.
+
+The workplace window, shown in Figure 7-8, shows the values of **pointer** and **variable**. The Xcode debugger conveniently adds and expansion triangle next to pointer values. Which let you easily see the value that they point to. This will become really useful as you continue to explore pointers.
+
+```c
+#include <stdio.h>
+
+int main(int argc, const char * argv[]) {
+    int variable = 27;
+    int *pointer;
+    
+    pointer = &variable;
+    
+    printf("the value of variable is %d\n", variable);
+    printf("the value of variable is %d\n", *pointer);
+    
+    printf("the value of pointer is: %p\n", pointer);
+    printf("the address of variable is: %p\n", &variable);
+    
+    *pointer = 27;
+    printf("the new value of variable is %d\n", variable);
+    
+    return 0;
+}
+```
+
+```console
+the value of variable is 27
+the value of variable is 27
+the value of pointer is: 0x7ffeefbff34c
+the address of variable is: 0x7ffeefbff34c
+the new value of variable is 27
+Program ended with exit code: 0
+```
 
 # * [Computer Architecture and Pointer Sizes](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 
@@ -231,6 +285,7 @@ Not surprisingly, it was not very long before this was not enough. By the time t
 Fast-forward 30 years and the 4GB of addresses that seemed almost inexhaustible in the 1980s looks puny now. CPU design has, naturally, been trying to keep up and desktop computers have now largely transitioned to using 64-bit (8byte) pointers. Again, that does not mean you can actually install 16 exabytes of RAM in your Mac, but a program that uses 64 bit pointers will run on such a system.
 
 64-bit pointers should hold us for some time to come. To put it in perspective, if the surface of a Popsicle stick represents all of the memory that 32-bit pointer can address, a 64-bit pointer can address the surface area of the golden gate bridge. Given the exponential rate that memory density increasing, and computer programs keep using more memory, the transition from 32 to 64 bit pointers should hold us for about 90 years. Of course, we will not be surprised if your great grandchildren are one day shaking their heads wondering how we ever got by with "only" 16 exabytes of addressable memory.
+
 
 # * [Function Parameters](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Variable Scope](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
