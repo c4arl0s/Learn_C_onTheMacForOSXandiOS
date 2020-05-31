@@ -213,6 +213,25 @@ int *pointer, variable;
  
 
 # * [Computer Architecture and Pointer Sizes](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
+
+If you are curious to know why an int variable takes up 4 bytes of memory and a pointer variable takes up 8 bytes of memory, read on.
+
+As of this writing, the default size for an int variable is 4 bytes, or 32 bits is enough to represent any whole number between 0 and 4,294,967,295. If this is not perfectly clear, review the section "Size of a Type" in [Chapter 4]().
+
+A pointer variable is, essentially, an integer variable that stores the address of a byte in memory. Logically, it has to be big enough to represent all of the possible memory addresses your computer has. That means that every pointer variable in a program has to be capable of storing a number between 0 and the last address, since a variable can (theoretically) be allocated at any memory address.
+
+If you shopped for a shiny new Mac recently, you know that (with some spare cash) it is not difficult to load it up with more than 4GB of RAM. A 32-bit(4 byte) integer can only represent number between 0 and 4,294,967,295 (4GB). Clearly, that is inadequate for today's computers.
+
+Modern CPUs use 64-bit (8 byte) pointers. This allows a pointer to store the address of any memory location between 0 and 18,446,744,073,709,551,615 -yikes, that is a big number! It works out to 16 exabytes, or 16 billion gigabytes - a really, really, big number, and way more RAM than you can afford,
+
+The size of pointers is intimately tied to he computer's hardware. Back in the days of the original Apple II, micro-computers used 16-bit pointers. Simply stated, it means the CPU could directly address 65,536 memory locations (64K). Hey, it seemed like a lot at the time.
+
+Not surprisingly, it was not very long before this was not enough. By the time the original Mac was introduced, CPUs were starting to use 32 bits pointers. The Motorola 68000 processor in the original Mac could, theoretically, address up to 4GB of RAM. Of course, no one made memory modules that big and you could not install that much RAM on the motherboard even if you could get your hands on it. But for programmers, it meant that pointer variables were now 4 bytes long
+
+Fast-forward 30 years and the 4GB of addresses that seemed almost inexhaustible in the 1980s looks puny now. CPU design has, naturally, been trying to keep up and desktop computers have now largely transitioned to using 64-bit (8byte) pointers. Again, that does not mean you can actually install 16 exabytes of RAM in your Mac, but a program that uses 64 bit pointers will run on such a system.
+
+64-bit pointers should hold us for some time to come. To put it in perspective, if the surface of a Popsicle stick represents all of the memory that 32-bit pointer can address, a 64-bit pointer can address the surface area of the golden gate bridge. Given the exponential rate that memory density increasing, and computer programs keep using more memory, the transition from 32 to 64 bit pointers should hold us for about 90 years. Of course, we will not be surprised if your great grandchildren are one day shaking their heads wondering how we ever got by with "only" 16 exabytes of addressable memory.
+
 # * [Function Parameters](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Variable Scope](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [How Function Parameters Works](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
