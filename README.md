@@ -295,6 +295,45 @@ Suppose you want to write a function called **AddTwo()** that takes two numbers,
 The answer to the first question is **function parameters** or **values passed** to a function. The second question is answered with a **return value**, or a **value passed** from the function back to the caller of that function. Before you can learn how to pass values around, or even why you need to, you need to know a little about the concept of scope.
 
 # * [Variable Scope](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
+
+In C, every variable is said to have a **scope**. A variable's scope defines where in the program you have access to that variable. In other words, if a variable is declared inside one function, can another function refer to that same variable ?
+
+Simply stated, the scope of a variable is defined by where it is declared. The scope of a variable declared inside a function is limited to the code inside that function.
+
+---
+Note
+Technically, the scope of a variable declared inside any block ({}) of code ends at the closing brace of that block
+---
+
+This definition is important. It means you can't declare a variable inside one function, and then refer to that same variable inside another function. Here's an example that will never compile:
+
+```c
+int main (int argc, const char *argv[])
+{
+	int numberOfDots;
+	numberOfDots = 500;
+	DrawDots();
+	return 0;
+}
+
+void DrawDots(void) 
+{
+	int index;
+	for (index = 1; index <= numberOfDots; index`++) 
+		printf(".")
+}
+```
+
+The error in this code occurs when the function DrawDots() tries to reference the variable numberOfDots. According to the rules of scope. DrawDots() does not even know about the variable numberOfDots. If you tried to compile this program, the compiler would complain that DrawDots() tried to use the variable numberOfDots without declaring it.
+
+The problem you are faced with is getting the value of numberOfDots to the function DrawDots() so DrawDots() knows how many dots to draw. The answer to this problem is function parameters.
+
+---
+TIP
+DrawDots() is another example of the value of writing functions. We have taken the code needed to perform a specific function (in this case, draw some dots) and embedded it in a function. Now, instead of having to duplicate the code inside DrawDots() every time we want to draw some dots in our program, all we need is a single line of code: a call to the function DrawDots()
+---
+
+
 # * [How Function Parameters Works](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Parameters are Temporary](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Function return Value](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
