@@ -286,8 +286,14 @@ Fast-forward 30 years and the 4GB of addresses that seemed almost inexhaustible 
 
 64-bit pointers should hold us for some time to come. To put it in perspective, if the surface of a Popsicle stick represents all of the memory that 32-bit pointer can address, a 64-bit pointer can address the surface area of the golden gate bridge. Given the exponential rate that memory density increasing, and computer programs keep using more memory, the transition from 32 to 64 bit pointers should hold us for about 90 years. Of course, we will not be surprised if your great grandchildren are one day shaking their heads wondering how we ever got by with "only" 16 exabytes of addressable memory.
 
-
 # * [Function Parameters](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
+
+We are going to take a short break from pointers and talk about functions and how to exchange values with them. How does this relate to pointers ? Be patient, as we will come back around to that soon enough.
+
+Suppose you want to write a function called **AddTwo()** that takes two numbers, adds them together, an returns the sum of the two numbers. How do you get the two original numbers to **AddTwo()**? How do you get the sum of the two numbers back to the function that called **AddTwo()**
+
+The answer to the first question is **function parameters** or **values passed** to a function. The second question is answered with a **return value**, or a **value passed** from the function back to the caller of that function. Before you can learn how to pass values around, or even why you need to, you need to know a little about the concept of scope.
+
 # * [Variable Scope](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [How Function Parameters Works](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Parameters are Temporary](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
