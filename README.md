@@ -324,17 +324,97 @@ void DrawDots(void)
 }
 ```
 
-The error in this code occurs when the function DrawDots() tries to reference the variable numberOfDots. According to the rules of scope. DrawDots() does not even know about the variable numberOfDots. If you tried to compile this program, the compiler would complain that DrawDots() tried to use the variable numberOfDots without declaring it.
+The error in this code occurs when the function **DrawDots()** tries to reference the variable **numberOfDots**. According to the rules of scope. **DrawDots()** does not even know about the variable **numberOfDots**. If you tried to compile this program, the compiler would complain that **DrawDots()** tried to use the variable **numberOfDots** without declaring it.
 
 The problem you are faced with is getting the value of numberOfDots to the function DrawDots() so DrawDots() knows how many dots to draw. The answer to this problem is function parameters.
 
 ---
 TIP
-DrawDots() is another example of the value of writing functions. We have taken the code needed to perform a specific function (in this case, draw some dots) and embedded it in a function. Now, instead of having to duplicate the code inside DrawDots() every time we want to draw some dots in our program, all we need is a single line of code: a call to the function DrawDots()
+**DrawDots()** is another example of the value of writing functions. We have taken the code needed to perform a specific function (in this case, draw some dots) and embedded it in a function. Now, instead of having to duplicate the code inside **DrawDots()** every time we want to draw some dots in our program, all we need is a single line of code: a call to the function **DrawDots()**
 ---
 
-
 # * [How Function Parameters Works](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
+
+Function **parameters** are variables, but instead of being declared at the beginning of a function, parameters are listed between the parentheses of the function's declaration, like this:
+
+```c
+void DrawDots(int numberOfDots)
+{
+	// function's body goes here
+}
+```
+
+When you call a function you simply provide a value for each parameter, making sure you pass the function what it expects. To call the version of **DrawDots()** just defined, make sure you place an int between parentheses. The call to **DrawDots** inside **main()** passes the value 30 into the function **DrawDots()**:
+
+```c
+int main(int argc, const char * argv[])
+{
+	DrawDots(30)
+	return 0
+}
+```
+
+When **DrawDots()** starts executing, it sets its parameter to the passed-on value. In this case, **DrawDots()** has one parameter, and int named **numberOfDots**. When this call executes
+
+```c
+DrawDots(30)
+```
+
+the function **DrawDots()** set its parameter, **numberOfDots**, to a value of 30.
+
+To make this little clearer, here is a revised version of the example:
+
+```c
+#include <stdio.h>
+void DrawDots( int numberOfDots );
+int main (int argc, const char * argv[])
+{
+    DrawDots( 30 );
+return 0; }
+
+void DrawDots( int numberOfDots )
+{
+int i;
+for ( i = 1; i <= numberOfDots; i++ ) printf( "." );
+}
+```
+
+This version of drawDots will compile and run properly. Its starts with the #include of studio.h and follows with the function prototype of **DrawDots()**. Recall the concept of function prototypes that we introduced in Chapter 3. Imagine the compiler making its way down the file, processing one chunk of code at a time. Without the prototype, it would hit the call of DrawDots(30) inside **main()** and not have anything to veryfy it agains. The prototype assures the compiler that you intend to provide a function named DrawDots(), that it will not return a value (that is why it is declared as void), and that it will take and int as an argumnt. As the compiler continues to process the file and comes across the actual call of DrawDots(), it can make an intelligent assessment of the call to decide if it was made properly.
+
+After the DrawDots prototype, you entere **main()**. **main()** calls DrawDots(), passing as a parameter the constant 30. **DrawDots()** receives the value 30 in its int parameter, numberOfDots. This means that the function **DrawDots** starts execution with a variable named **numberOfDots** having a value of 30.
+
+Inside **DrawDots()**, the **for loop** behaves as you might expect, drawing 30 periods in the console window. Figure 7-9 shows a picture of this program in action. You can run this example yourself. 
+
+```c
+#include <stdio.h>
+
+void DrawDots( int numberOfDots );
+
+int main(int argc, const char * argv[]) {
+    
+    int numberOfDots;
+    numberOfDots = 500;
+    DrawDots(30);
+    
+    return 0;
+}
+
+void DrawDots(int numberOfDots)
+{
+    int index;
+    for (index = 1; index <= numberOfDots; index++)
+        printf(".");
+    printf("\n");
+}
+```
+
+output
+
+```console
+..............................
+Program ended with exit code: 0
+```
+
 # * [Parameters are Temporary](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Function return Value](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [printf() Returns a Value](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
