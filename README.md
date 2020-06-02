@@ -326,7 +326,7 @@ void DrawDots(void)
 
 The error in this code occurs when the function **DrawDots()** tries to reference the variable **numberOfDots**. According to the rules of scope. **DrawDots()** does not even know about the variable **numberOfDots**. If you tried to compile this program, the compiler would complain that **DrawDots()** tried to use the variable **numberOfDots** without declaring it.
 
-The problem you are faced with is getting the value of numberOfDots to the function DrawDots() so DrawDots() knows how many dots to draw. The answer to this problem is function parameters.
+The problem you are faced with is getting the value of **numberOfDots** to the function DrawDots() so DrawDots() knows how many dots to draw. The answer to this problem is function parameters.
 
 ---
 TIP
@@ -416,6 +416,56 @@ Program ended with exit code: 0
 ```
 
 # * [Parameters are Temporary](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
+
+When a function gets called, a temporary variable is created for each of its parameters. When the function exits (returns to the calling function), that variable goes away.
+
+In the example, we passed a value of 30 into **DrawDots** as a parameter. The value came to rest in the temporary variable named **numberOfDots**. Once **DrawDots** exited, this version of numberOfDots ceased to exist.
+
+---
+Note
+Remember, a variable declared inside a function can only be used inside that function. For this reason, they are often called **local variables**.
+---
+
+It is perfectly acceptable for two functions to use the same variable names for completely different purposes. For example, using a variable name like index as a counter in a **for loop** is fairly standard. What happens when, in the middle of just such a **for loop**, you can call a function that also uses a variable named index ? Here is an example:
+
+```c
+#include <stdio.h>
+
+void DrawDots( int numberOfDots );
+
+int main(int argc, const char * argv[]) {
+    
+    int numberOfDots;
+		int index;
+
+		for(index = 1; index<=10; index++) {
+    	DrawDots(30);
+			printf("\n");
+		} 
+    return 0;
+}
+
+void DrawDots(int numberOfDots)
+{
+    int index;
+    for (index = 1; index <= numberOfDots; index++)
+        printf(".");
+    printf("\n");
+}
+```
+
+This code prints a series of 10 rows of dots, with 30 dots in each row. After each call to **DrawDot()**, carriage return is printed, moving the cursor in position to begin the nest row of dots.
+
+Notice that **main()** and **DrawDots()** each feature a variable named index. **main()** uses the variable index as a counter, tracking the number of rows of dots printed.
+**DrawDots()** also uses index as counter, tracking the number of dots in the row it is printing. Will not **DrawDots()'s** copy of index mess up **main()**'s copy of index ? No!
+
+When **main()** starts executing, memory gets allocated for its copy of index. When **main()** calls **DrawDots**, additional memory gets allocated for the DrawDots copy of index. When DrawDots() exits, the memory for its copy of index is deallocated freed up so it can be used again for some variable.
+
+---
+Note
+A parameter or variable declared within a function is known as an **automatic variable**, so called because they are automatically allocated when the function begins, and then automatically deallocated when the function ends. **DrawDots** has a two automatic variables: the variable **index** and the **numberOfDots** parameter.
+---
+
 # * [Function return Value](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [printf() Returns a Value](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Multiple Returns Statements](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)

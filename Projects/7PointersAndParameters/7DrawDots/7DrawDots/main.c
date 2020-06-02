@@ -11,12 +11,13 @@
 void DrawDots( int numberOfDots );
 
 int main(int argc, const char * argv[]) {
-    
-    int numberOfDots;
-    numberOfDots = 500;
-    DrawDots(30);
-    
-    return 0;
+    int index;
+
+    for(index = 1; index<=10; index++) {
+        DrawDots(30);
+        printf("\n");
+    }
+return 0;
 }
 
 void DrawDots(int numberOfDots)
@@ -24,6 +25,6 @@ void DrawDots(int numberOfDots)
     int index;
     for (index = 1; index <= numberOfDots; index++)
         printf(".");
-    printf("\n");
 }
+
 
