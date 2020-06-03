@@ -480,6 +480,58 @@ The constant 30 is an **argument** being passed to **DrauDots()**; It is not a p
 Many programmers use the terms **"Argument"** and **"Parameter"** interchangeably. For example, someone might talk about passing a parameter to a function. Stricly speaking, you pass an argument to a function to be received as a parameter. As long as you understand that point, the term **"parameter passing"** will do just fine.
 
 # * [Function return Value](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
+
+Parameters let you copy values to functions, but what about getting values from functions? That is where a function's return value comes into play. A **return value** passes a single value from the function back to the function that called it.
+
+You declare the type of value a function will return right at the beginning of the function's definition. This permits the function to be used in an expression, juts as if the function was a variable of that type. The return statement at the end of the function's body determines what that value will be.
+
+Now we can finally explain the mysterious **return 0**; statement that is been in every example in this book. The function **main** is declared to return and int value:
+
+```c
+int main( int argc, const char * argv[] )
+```
+
+When **main()** function ends, it returns a value of 0 to whoever called it using statement:
+
+```c
+return 0;
+```
+
+The function that called **main()** - **start()**, it must knows- receives the value when main() ends. The meaning of the value must be agreed upon in advance. In this case of main(), the value returned is the program's so-called **"status"** value. A zero indicates that the program ran successfully. Any other value indicates that the program failed to run or encountered some problem.
+
+To see function return values in action, let's create a function named Average(). You will find this function in the Average project directory. Average() takes two ints and returns the average of those two values:
+
+```c
+#include <stdio.h>
+
+int average( int firstNumber, int secondNumber);
+
+int main(int argc, const char * argv[]) {
+    int averageNumber;
+    averageNumber = average(7,23);
+    printf("The averag of 7 and 23 is %d\n", averageNumber);
+    return 0;
+}
+
+int average( int firstNumber, int secondNumber)
+{
+    return ( firstNumber + secondNumber ) / 2;
+}
+```
+
+```console
+The averag of 7 and 23 is 15
+Program ended with exit code: 0
+```
+
+Another way to use a function, nested:
+
+```c
+(if (average(i,j) > 100))
+```
+
+The key thing to remember is that the value of a function call in an expression will be the value returned by the function call in an expression will be the value returned by the function.
+
 # * [printf() Returns a Value](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Multiple Returns Statements](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Return Nothing At All](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
