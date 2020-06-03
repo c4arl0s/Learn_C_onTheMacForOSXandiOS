@@ -33,6 +33,7 @@ Learn_C_onTheMacForOSXandiOS
 * [Variable Scope](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-variable-scope)
 * [How Function Parameters Works](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-how-function-parameters-works)
 * [Parameters are Temporary](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-parameters-are-temporary)
+* [The Difference Between Arguments and Parameters]()
 * [Function return Value](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-function-return-value)
 * [printf() Returns a Value](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-printf-returns-a-value)
 * [Multiple Returns Statements](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-multiple-returns-statements)
@@ -103,7 +104,7 @@ int variable;
 
 The compiler reserves memory for the exclusive use of **variable**.
 
-Note: As mentioned earlier in this book, the amount of memory allocated for an Int depends on your development environment, Xcode currently defaults to using 4-byte ints.
+**Note**: As mentioned earlier in this book, the amount of memory allocated for an Int depends on your development environment, Xcode currently defaults to using 4-byte ints.
 
 Each variable's bytes has a specific address. Figure 7-4 shows the computer's 1 gigabyte of memory.
 
@@ -113,7 +114,7 @@ In this picture, the 4 bytes allocated to variable have he addresses 836, 837, 8
 
 By convention, a variable's address is said to be the address of its first byte (the first byte is the byte with the lowest numbered address). If a variable uses memory locations 936 through 839, its address is 836 and its length is 4 bytes.
 
-Note: When a variable occupies more than 1 byte of memory, he bytes are always consecutive (next to each other in memory). You will never see an int whose byte adresses are 508, 509, 510 and 695. A variable's bytes are like family, they stick together.
+**Note**: When a variable occupies more than 1 byte of memory, he bytes are always consecutive (next to each other in memory). You will never see an int whose byte adresses are 508, 509, 510 and 695. A variable's bytes are like family, they stick together.
 
 As we showed earlier, a variable's address is a lot like the library catalog number in a library book's catalog entry. Both act as pointers, one to  book on the library self and the other to a variable. From now on, when we use the term "pointer" with respect to a variable, we referring to the variable's address.
 
@@ -173,7 +174,7 @@ The complement to the **address-of** (&) operator is the unary * or **indirectio
 Here is a simple example
 
 ---
-Note
+**Note**
 The * operator officially name in the C standard is the "indirection pointer", but it is also commonly referred to as the "start", "pointer" or "dereference operator"
 ---
 
@@ -301,7 +302,7 @@ In C, every variable is said to have a **scope**. A variable's scope defines whe
 Simply stated, the scope of a variable is defined by where it is declared. The scope of a variable declared inside a function is limited to the code inside that function.
 
 ---
-Note
+**Note**
 Technically, the scope of a variable declared inside any block ({}) of code ends at the closing brace of that block
 ---
 
@@ -422,7 +423,7 @@ When a function gets called, a temporary variable is created for each of its par
 In the example, we passed a value of 30 into **DrawDots** as a parameter. The value came to rest in the temporary variable named **numberOfDots**. Once **DrawDots** exited, this version of numberOfDots ceased to exist.
 
 ---
-Note
+**Note**
 Remember, a variable declared inside a function can only be used inside that function. For this reason, they are often called **local variables**.
 ---
 
@@ -462,9 +463,21 @@ Notice that **main()** and **DrawDots()** each feature a variable named index. *
 When **main()** starts executing, memory gets allocated for its copy of index. When **main()** calls **DrawDots**, additional memory gets allocated for the DrawDots copy of index. When DrawDots() exits, the memory for its copy of index is deallocated freed up so it can be used again for some variable.
 
 ---
-Note
+**Note**
 A parameter or variable declared within a function is known as an **automatic variable**, so called because they are automatically allocated when the function begins, and then automatically deallocated when the function ends. **DrawDots** has a two automatic variables: the variable **index** and the **numberOfDots** parameter.
 ---
+
+# * [The Difference Between Arguments and Parameters]()
+
+Here is one final point: **The value pased into a function is known as an **argument**. The variable declared to received the argument is known as a **parameter**. In this line of code:
+
+```c
+DrawDots(30)
+```
+
+The constant 30 is an **argument** being passed to **DrauDots()**; It is not a parameter.
+
+Many programmers use the terms **"Argument"** and **"Parameter"** interchangeably. For example, someone might talk about passing a parameter to a function. Stricly speaking, you pass an argument to a function to be received as a parameter. As long as you understand that point, the term **"parameter passing"** will do just fine.
 
 # * [Function return Value](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [printf() Returns a Value](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
