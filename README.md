@@ -557,6 +557,41 @@ Program ended with exit code: 0
 ```
 
 # * [Multiple Returns Statements](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
+
+Let's create a slightly more complex example that also highlights a feature of **return** statements.
+
+```c
+#include <stdio.h>
+
+int minimum(int firstNumber, int secondNumber);
+
+int main(int argc, const char * argv[]) {
+    printf("%d is smaller of 7 an 23\n", minimum(7,23));
+    printf("%d is smaller of 23 and 7\n", minimum(23, 7));
+}
+
+int minimum(int firstNumber, int secondNumber)
+{
+    if(firstNumber<secondNumber)
+        return firstNumber;
+    return secondNumber;
+}
+```
+
+```console
+7 is smaller of 7 an 23
+7 is smaller of 23 and 7
+Program ended with exit code: 0
+```
+
+For a function that returns a value - we will get to functions that don't shortly - the **return** statement expresses what value is to be returned. But the **return** statement has another important attribute: **it ends the function**.
+
+Just as the break statement you send in Chapter 6 will jump out of any remaining code in a loop, the **return** statement jumps out of any remaining code in that function. Typically, you will find a single **return** statement at the very end of the function, as you have been seen in **main()**, where its purpose is to state the value to be returned. But you can have additional **return** statements elsewhere in the function. If a **return** statement is not the last statement, it causes the function to exit immediately and return the stated value to the caller. No further code in the function is performed.
+
+In the minimum() function, the **if** statement determines if the value of **a** is less than the value of **b**. If it is, the **return a**; statement is performed. This causes the value of **a** to be returned as the value for this function and no further statements in minimum are performed.
+
+If **a** is not less than **b**, the statement following the if statement is executed instead. The **return b**; statement causes the value of **b** to be returned. The end result is that the value of the **minimum()** function call will be the smaller of its two argument values.
+
 # * [Return Nothing At All](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Putting it All Together](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Using Pointers as Parameters](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
