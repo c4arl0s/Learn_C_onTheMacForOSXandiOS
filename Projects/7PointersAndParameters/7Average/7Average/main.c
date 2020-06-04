@@ -12,8 +12,9 @@ int average( int firstNumber, int secondNumber);
 
 int main(int argc, const char * argv[]) {
     int averageNumber;
-    averageNumber = average(7,23);
-    printf("The averag of 7 and 23 is %d\n", averageNumber);
+    int lineLenght = printf("The average of 7 and 23 is %d\n", average(7,23));
+    printf("The previous line is %d characters long\n", lineLenght-1);
+
     return 0;
 }
 

@@ -533,6 +533,29 @@ Another way to use a function, nested:
 The key thing to remember is that the value of a function call in an expression will be the value returned by the function call in an expression will be the value returned by the function.
 
 # * [printf() Returns a Value](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
+
+You are also within your rights to completely ignore the value returned by a function, like this:
+
+```c
+average(2,108)
+```
+
+If you write a function call, but ignore its returns value, nothing bad happens. The function executes and the value it returns simply disappears into the mist. For function like average() that would be silly, because the whole purpose of the function is to calculate a value. If you weren't interested in the value, you would not have called the function.
+
+But a lot of functions perform useful tasks while also returning a value, which may or may not be of interest to the caller. It is worth nothing that printf() is actually declared to return an int. The value returned is the number of characters generated, or a negative value if an error occurred. The vast majority of programmers ignore this return value because all they are interested in is getting a message sent to the console. That is all we have cared about so far. But if you ever find yourself in a situation where you want to know exactly how many characters the printf() function sent to the console, all you have to do is observe the value returned by the printf() function call, like this:
+
+```c
+int averageNumber;
+int lineLenght = printf("The average of 7 and 23 is %d\n", average(7,23));
+printf("The previous line is %d characters long\n", lineLenght-1);
+```
+
+```console
+The average of 7 and 23 is 15
+The previous line is 29 characters long
+Program ended with exit code: 0
+```
+
 # * [Multiple Returns Statements](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Return Nothing At All](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Putting it All Together](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
