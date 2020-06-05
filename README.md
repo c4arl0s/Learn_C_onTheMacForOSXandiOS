@@ -593,6 +593,40 @@ In the minimum() function, the **if** statement determines if the value of **a**
 If **a** is not less than **b**, the statement following the if statement is executed instead. The **return b**; statement causes the value of **b** to be returned. The end result is that the value of the **minimum()** function call will be the smaller of its two argument values.
 
 # * [Return Nothing At All](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
+
+Earlier in the book we alluded to the **void** type. The **void** type is a special type that means **nothing** or **no value**. You use it in places to indicate that something does not have any value at all, and **void** has two very important roles in functions.
+
+Both of these roles are illustrated in this function definition from the **hello** project you ran in chapter 3:
+
+```c
+void sayHello( void );
+```
+
+A return type of void indicates that the function does not return a value. That's it. The function does not pass a value of any kind back to the caller. You can call a function with a **void** return type --called a **void function**--- like this:
+
+```c
+sayHello();
+```
+
+But you can't use it in an expression, because it has no value:
+
+```c
+variable = sayHello(); // error, sayHello() does not return a value
+```
+
+The other use of **void** is in the parameter list of a function that does not have any parameters. The definition sayHello(void) means that there are no values passed to sayHello(). When you call sayHello(), you don't put any arguments between the two parentheses.
+
+---
+**Note** 
+You can still use a **return^** statement in a void function; you just omit the expression. This is sometimes called an **empty return statement**. It will still stop the function and return execution to the function that called it, but no value is passed. 
+---
+
+A function can have a return value and no parameters, parameters but no return value, or any combination that makes sense.
+
+---
+**TIP**
+The compiler will help you use the **return** statement correctly. If you try to use a **return** with an expression in a void function, or forget the expression in a function that returns a value, or just forget the return statement altogether, the compiler will issue a warning. Check for those warnings to make sure you are using the appropiate return statement.
+
 # * [Putting it All Together](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Using Pointers as Parameters](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Some Pointers on Pointers](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
