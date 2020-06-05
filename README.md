@@ -632,6 +632,90 @@ The compiler will help you use the **return** statement correctly. If you try to
 Brace yourself. You are about to use almost everything you have learned about C so far. You have learned about variables, expressions, functions, if statements, loops, pointers, and parameter passing. Now we are going to show a program that uses them all together. 
 
 # * [Using Pointers as Parameters](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
+
+Combining the individual pieces of C definitely creates a whole that is more than a sum of its part. The first bit of alchemy we will perform is to combine pointers with function parameters.
+
+To compile this project I have to change The Build Settings of the project to have access to the math headers, Use ANSI-C
+
+![Screen Shot 2020-06-05 at 14 03 38](https://user-images.githubusercontent.com/24994818/83913667-605c7a00-a735-11ea-84a9-e2a565ac7283.png)
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+#include <math.h>
+```
+
+Prototype function:
+
+```c
+bool factor(int number, int *firstFactorPointer, int *secondFactorPointer);
+```
+
+In main()
+
+```c
+int main(int argc, const char * argv[])
+{
+    int number;
+    
+    for (number=2; number<=20; number++) {
+        bool isPrime;
+        int firstFactorNumber, secondFactorNumber;
+        
+        isPrime = factor(number, &firstFactorNumber, &secondFactorNumber);
+        if (isPrime)
+            printf("The number %d is prime\n", number);
+        else
+            printf("The number %d has %d and %d as factors\n", number, firstFactorNumber, secondFactorNumber);
+        
+    }
+    return 0;
+}
+```
+
+Write the function:
+
+```c
+bool factor(int number, int *firstFactorPointer, int *secondFactorPointer)
+{
+    int factor;
+
+    for (factor = sqrt(number); factor > 1; factor--) {
+        if ((number % factor ) == 0) {
+                break;
+        }
+    }
+    *firstFactorPointer = factor;
+    *secondFactorPointer = number / factor;
+    return ( factor == 1);
+}
+```
+
+By this point in your journey to master C, you should understand practically every aspects of this program.
+
+```console
+The number 2 is prime
+The number 3 is prime
+The number 4 has 2 and 2 as factors
+The number 5 is prime
+The number 6 has 2 and 3 as factors
+The number 7 is prime
+The number 8 has 2 and 4 as factors
+The number 9 has 3 and 3 as factors
+The number 10 has 2 and 5 as factors
+The number 11 is prime
+The number 12 has 3 and 4 as factors
+The number 13 is prime
+The number 14 has 2 and 7 as factors
+The number 15 has 3 and 5 as factors
+The number 16 has 4 and 4 as factors
+The number 17 is prime
+The number 18 has 3 and 6 as factors
+The number 19 is prime
+The number 20 has 4 and 5 as factors
+Program ended with exit code: 0
+```
+
 # * [Some Pointers on Pointers](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Pass-By-Value vs Pass-By-Reference](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [The NULL Pointer Value](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
