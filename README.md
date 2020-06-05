@@ -628,6 +628,9 @@ A function can have a return value and no parameters, parameters but no return v
 The compiler will help you use the **return** statement correctly. If you try to use a **return** with an expression in a void function, or forget the expression in a function that returns a value, or just forget the return statement altogether, the compiler will issue a warning. Check for those warnings to make sure you are using the appropiate return statement.
 
 # * [Putting it All Together](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
+
+Brace yourself. You are about to use almost everything you have learned about C so far. You have learned about variables, expressions, functions, if statements, loops, pointers, and parameter passing. Now we are going to show a program that uses them all together. 
+
 # * [Using Pointers as Parameters](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Some Pointers on Pointers](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Pass-By-Value vs Pass-By-Reference](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
