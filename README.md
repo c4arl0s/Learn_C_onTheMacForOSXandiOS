@@ -731,6 +731,22 @@ Program ended with exit code: 0
 There are some finer points (no pun intended) about pointers and parameters that you should know about. These will help you to understand the best ways to use, and maybe when not to use, pointers in your program.
 
 # * [Pass-By-Value vs Pass-By-Reference](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
+
+In the program average(), you passed simple (int) values to the average() function. The values of the argument expressions were copied into the function's parameters before the function executed. The function could change its parameters variables, but that has no effect on the original values. (We know you know all of this, we are just restating it so it is clear).
+
+In programming lingo this is called **pass-by-value**. A copy of the value is passed to the function and the function can do anything it wants to with its copy; it will never affect another variable in the program.
+
+In the Factor project you passed the addresses of two variables. The factor() function was able to use those pointers to affect variables outside its scope. This method of passing values is called **pass-by-reference**. Instead of copying the value, a reference to the value is passed to the function. The function can use this reference to access and/or modify the original value at will.
+
+Whether to use pass-by-value or pass-by-reference is a perennial topic of debate among programmers, in general, our approach is to use pass-by-value unless there is a compelling reason to use pass-by-reference.
+
+Compelling reasons to use pass-by-reference might be
+
+	* The value is a group or collection of values. (this will make sense after you read about arrays in the next chapter)
+	* a Function must return more than one value. (there are also other solutions to this particular problem that you will learn about in chapter 9)
+	* The amount of data you need to pass to, or from, a function is cumbersome to copy. Remember the library example at the start of the chapter? Even if you could make a copy of an entire book, It is still much easier to give someone the catalog number of the book instead.
+	* The information that needs to be passed is a complex collection of values, and the function needs to examine some values and modify numbers others. (Again, this will make more sense after Chapter 9). It is easier to pass a single reference to the whole mess rather than copying every value the function will need.
+
 # * [The NULL Pointer Value](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [The Dark Side of Pointers](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Physical and Logical Memory Address](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
