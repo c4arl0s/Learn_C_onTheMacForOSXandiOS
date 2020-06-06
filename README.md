@@ -716,7 +716,20 @@ The number 20 has 4 and 5 as factors
 Program ended with exit code: 0
 ```
 
+# Algorithm of Factor project.
+
+1. iterate over the range number 2 to number 20
+2. for each number get its prime number
+3. if the number is prime print it
+		*if the number is not prime print its factors
+4. terminate the program returning 0.
+
+# Algorithm to get prime number and factors
+		
 # * [Some Pointers on Pointers](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
+
+There are some finer points (no pun intended) about pointers and parameters that you should know about. These will help you to understand the best ways to use, and maybe when not to use, pointers in your program.
+
 # * [Pass-By-Value vs Pass-By-Reference](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [The NULL Pointer Value](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [The Dark Side of Pointers](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)

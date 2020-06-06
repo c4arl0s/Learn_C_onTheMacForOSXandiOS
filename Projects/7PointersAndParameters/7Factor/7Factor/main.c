@@ -32,7 +32,7 @@ int main(int argc, const char * argv[])
 
 bool factor(int number, int *firstFactorPointer, int *secondFactorPointer)
 {
-    int factor;
+    int factor ;
 
     for (factor = sqrt(number); factor > 1; factor--) {
         if ((number % factor ) == 0) {
