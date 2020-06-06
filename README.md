@@ -748,6 +748,27 @@ Compelling reasons to use pass-by-reference might be
 	* The information that needs to be passed is a complex collection of values, and the function needs to examine some values and modify numbers others. (Again, this will make more sense after Chapter 9). It is easier to pass a single reference to the whole mess rather than copying every value the function will need.
 
 # * [The NULL Pointer Value](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
+
+The C Language defines a special pointer value named **NULL** that means **"no address"**. You can assign the NULL value to any pointer (pointer == NULL) an you can compare pointer values with NULL, as in if(pointer == NULL). NULL gives you a value that means the pointer does not point any variable at all.
+
+Earlier we stated that memory addresses start at zero and go up, and a variable can be allocated at any address. In practice, **that is not entirely true**. Addresses do start at 0, but OSX and BSD Unix never allocate variables at address 0, or anywhere near address 0. The reason why are many, but the one important is so **that programmers can be guaranteed that no valid variable address will ever be zero.**
+
+The NULL constant is address 0. Assigning NULL to a pointer is the same as setting its integer value to 0. One side effect is that a lot of C programmers use a short-hand for testing to see if a pointer variable points to a value or not 
+
+```c
+if(pointer) {
+}
+```
+
+Remember that an if statement performs its action if the expression is non-zero. Since NULL is always zero and any valid variable address will not be zero, this statement is equivalent to:
+
+```c
+if (pointer != null) {
+}
+```
+
+ We suggest you write out the long form, simply because it makes your intentions clearer; both are common.
+
 # * [The Dark Side of Pointers](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Physical and Logical Memory Address](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Global and Static Variables](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
