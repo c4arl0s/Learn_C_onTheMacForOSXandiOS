@@ -45,6 +45,7 @@ Learn_C_onTheMacForOSXandiOS
 * [The NULL Pointer Value](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-the-null-pointer-value)
 * [The Dark Side of Pointers](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-the-dark-side-of-pointers)
 * [Physical and Logical Memory Address](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-physical-and-logical-memory-address)
+* [Tips for staying safe with pointers]()
 * [Global and Static Variables](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-global-and-static-variables)
 * [Global Variables](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-global-variables)
 * [When to use Globals](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-when-to-use-globals)
@@ -780,6 +781,25 @@ The principle peril of pointers is that they can point anywhere. There are no sa
 The effects of using pointers that point to the wrong thing range from the perplexing to the disastrous. If a pointer points to some other variable, changing it will have a bizarre effect on your program- the value you expected to change will not, and some other unrelated variable will spontaneously change. If the pointer points to memory that does not exist, the hardware will catch it and terminate your program with a **"segment default"** signal, colloquially known as a **"crash"**.
 
 # * [Physical and Logical Memory Address](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
+
+If you are reading this book carefully, you might have detected an inconsistency.
+
+We said that memory addresses start at zero and go up. We said C reserves address 0 (NULL) to mean **"no address"**. We said that if you try to access a memory address that does not exist, your program will crash. But why ? Does not address 0 always exist ? Isn't address 0 the one address in every computer that exists ?
+
+Yes and no. The answer lies in the difference between physical memory addresses and logical memory addresses.
+
+In **physical memory** -The RAM that is soldered to your motherboard- address 0 is the first byte of memory. But your program never addresses physical memory directly. It works with what we are called **logical addresses**.
+
+Modern computers use a system called **virtual memory** that maps (translates) the logical addresses that your program uses into the physical addresses of your RAM. This is done through (surprise!) a bunch of pointers called a **page map**. When your program is started it is allocated a range of logical memory addresses to use. These addresses might start at, say, one million (1,000,000) and go up from there. You will notice that address 0 ins intentionally left out. If your program allocates an integer at address 1,000,000 and stores a value in it, **the CPU uses its page map to translate that logical address into the actual physical address of your RAM**. Don't worry about the complexity of this; It is all handled by hardware and it is mind-numbingly fast.
+
+This arrangement benefits your program in two ways. The first is security. If you accidently use an uninitialized pointer, your program could end up accessing a memory address that's not even part of your program. Imagine if your program could change values in another running program! Well, relax; you can't. Your program can only access the logical addresses that have been assigned to it. Try to access anything outside that range and your program will crash.
+
+The second benefit is simplicity. Every program can allocate its first variable at address 1,000,000. Each program has the same logical addresses, but the page map translates them into different physical addresses. One program does not have to worry about using addresses of another program. Each program lives in its own separate universe, and they never collide.
+
+The short and long of it is that you don't need to worry about it. You will never see the actual (physical) address that your data is stored in. When Programming and debugging, everything will be in the logical addresses allotted to your program.
+
+# * [Tips for staying safe with pointers]()
+
 # * [Global and Static Variables](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Global Variables](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [When to use Globals](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
