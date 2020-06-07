@@ -770,6 +770,15 @@ if (pointer != null) {
  We suggest you write out the long form, simply because it makes your intentions clearer; both are common.
 
 # * [The Dark Side of Pointers](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
+
+> With great power comes great responsibility
+
+Pointers are very powerful, but they have a dark side. They occupy a dangerous land full of hazards just waiting to snare an unsuspecting programmer. To correct, and safe, use of pointers requires careful planning and attention to detail.
+
+The principle peril of pointers is that they can point anywhere. There are no safeguards to ensure that a pointer points to the kind of value you expect it to. It can just as easily point another kind of value, or unused memory, or the part of memory where the code for your program is stored, or an address that does not even exist.
+
+The effects of using pointers that point to the wrong thing range from the perplexing to the disastrous. If a pointer points to some other variable, changing it will have a bizarre effect on your program- the value you expected to change will not, and some other unrelated variable will spontaneously change. If the pointer points to memory that does not exist, the hardware will catch it and terminate your program with a **"segment default"** signal, colloquially known as a **"crash"**.
+
 # * [Physical and Logical Memory Address](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Global and Static Variables](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Global Variables](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
