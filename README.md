@@ -45,7 +45,7 @@ Learn_C_onTheMacForOSXandiOS
 * [The NULL Pointer Value](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-the-null-pointer-value)
 * [The Dark Side of Pointers](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-the-dark-side-of-pointers)
 * [Physical and Logical Memory Address](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-physical-and-logical-memory-address)
-* [Tips for staying safe with pointers]()
+* [Tips for staying safe with pointers](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-tips-for-staying-safe-with-pointers)
 * [Global and Static Variables](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-global-and-static-variables)
 * [Global Variables](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-global-variables)
 * [When to use Globals](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-when-to-use-globals)
@@ -798,7 +798,13 @@ The second benefit is simplicity. Every program can allocate its first variable 
 
 The short and long of it is that you don't need to worry about it. You will never see the actual (physical) address that your data is stored in. When Programming and debugging, everything will be in the logical addresses allotted to your program.
 
-# * [Tips for staying safe with pointers]()
+# * [Tips for staying safe with pointers](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters)
+
+- Make sure your pointer variables are initialized. An uninitialized integer variable simple contains  goofy number, but an uninitialized pointer variable will point to some random, likely invalid location.
+- If you don`t have a value to put in a pointer, set it to NULL. Test the pointer to make sure if is not equal to NULL before you use it. Dereferencing a NULL pointer is the fastest, and most common, way to crash your program. If a pointer is no longer valid, set it to NULL again.
+- Make sure you don't use pointers to variables that no longer exist. In the Factor project, main() allocated a variable and passed its address to factor(), which used that pointer. The variable existed before, and after, the call to factor() so that was safe. But what happens if you reverse it ? what if factor() allocates a variable and passess its addres back to main() It is unsafe for main() to use that pointer. Why ? Because the variable created by factor() disappeared as soon as the function returned to main(), so the pointer that main() has now points to a varible that no longer exists. That is a recipe for disaster.
+
+Dont feel bad if you make a mistake with pointers, because **you will make a mistake with pointers.**. We doubt there is a C programmer alive that has not crashed their application using a ULL or uninitialized pointer. Professional programmers with decades of experience do it. In fact, it is the number one reason application crash.
 
 # * [Global and Static Variables](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Global Variables](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
