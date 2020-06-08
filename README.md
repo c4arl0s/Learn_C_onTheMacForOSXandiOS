@@ -807,6 +807,9 @@ The short and long of it is that you don't need to worry about it. You will neve
 Dont feel bad if you make a mistake with pointers, because **you will make a mistake with pointers.**. We doubt there is a C programmer alive that has not crashed their application using a ULL or uninitialized pointer. Professional programmers with decades of experience do it. In fact, it is the number one reason application crash.
 
 # * [Global and Static Variables](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
+
+So far we have used function parameters, return values, and pointers to pass values to and from other functions. We did this  because the scope of an automatic variable is confined to the function (of block) it was declared in. This is, by far, the **most common way that values are passed around inside a program**. There is, however, an alternative.
+
 # * [Global Variables](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [When to use Globals](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Adding Globals to Your Programs](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
