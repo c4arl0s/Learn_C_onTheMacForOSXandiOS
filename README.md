@@ -811,6 +811,47 @@ Dont feel bad if you make a mistake with pointers, because **you will make a mis
 So far we have used function parameters, return values, and pointers to pass values to and from other functions. We did this  because the scope of an automatic variable is confined to the function (of block) it was declared in. This is, by far, the **most common way that values are passed around inside a program**. There is, however, an alternative.
 
 # * [Global Variables](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
+
+A **global variable** isa variable that is accessible from every function in your program. Said another way, the scope of a global variable is the entire program. The variable is created before the programm begins and exist until it ends.
+
+**Global variables** provide and alternative to passing values via parameters. Global variables are just like regular variables, with the exception that they can be referenced inside any of your program's functions. One function might initialize the the global variable; another might change its value; and another function might print the value of the global variable in the console window.
+
+As you design your programs, you will have to make some basic decisions about **data sharing between functions**. If you will be sharing a variable among a number of functions, you might want to consider making the varible a global. **Globals** are escpecially useful when you want to share a variable between two functions that are several calls apart.
+
+**Several calls apart?** At times, you will find yourself passing a parameter to a function, not because the function needs the parameter, but because the function calls another function that needs that parameter
+
+```c
+#include <stdio.h>
+
+void passAlong(int variable);
+void printVariable(int variable);
+
+int main(int argc, const char * argv[]) {
+    int variable;
+    
+    variable = 10;
+    passAlong(variable);
+    return 0;
+}
+
+void passAlong(int variable)
+{
+    printVariable(variable);
+}
+
+void printVariable(int variable)
+{
+    printf("variable = %d\n", variable);
+}
+```
+
+```console
+variable = 10
+Program ended with exit code: 0
+```
+
+Notice that main() passes **variable** tothe function **passAlong()**. **passAlong()** does not actually make use of **variable**. Instead, it just passes **variable** along to the function **printVariable()**. **printVariable(), prints **variable** and then returns. If **variable** were a global, you could have avoided some parameter passing. **main()** and **printVariable** could have **shared variable** without the use of parameters. 
+
 # * [When to use Globals](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Adding Globals to Your Programs](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Static Variables](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
