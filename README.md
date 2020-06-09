@@ -853,6 +853,17 @@ Program ended with exit code: 0
 Notice that main() passes **variable** tothe function **passAlong()**. **passAlong()** does not actually make use of **variable**. Instead, it just passes **variable** along to the function **printVariable()**. **printVariable(), prints **variable** and then returns. If **variable** were a global, you could have avoided some parameter passing. **main()** and **printVariable** could have **shared variable** without the use of parameters. 
 
 # * [When to use Globals](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
+
+When should you use parameters ? when you should you use globars ?
+
+In a nutshell (cascara), you should generally avoid using globals unless there's a compelling reason to do so. Global variables offer a shorcut that saves you from having to pass information up and down your chain of function calls and gives disparate functions access to the same information. They do save time, but sometimes at the cost of proper program design. As you move on to object progrmming languages like objective-c, you will find that rarely (if ever) need globals.
+
+So why you learn about them ? There are times when a global is absolutely the correct solution. On the other hande, a telitale sign of an inexperienced programmer is overuse of globals.
+
+None of these decisions are cut and dried. There's a very influenctial book title **Design Patters: Elements of Reusable Object-Oriented Design** written by the **so-called** **"Gang of Four". Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides. The book describes common programming problems and elegant solutions to those problems. These **"design patterns"** as they have become known as, are universal and can be applied to just about become familiar with design patterns.
+
+At the same time, people have observed **"anti-patterns"**, bad programming practices, used by poor programmers. Using too many global variables is an anti-pattern, and here is why. **One variable should be available (in scope) to that code that makes use of that variable, and not much else. Functions shouldn't have acess to unrelated variables. A global variable is accessible everywhere, but it is rare to find a variable whose purpose is applicable to every function in your program. As your program get larger, they become even more rare**. 
+
 # * [Adding Globals to Your Programs](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Static Variables](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Other Scopes](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
