@@ -865,6 +865,43 @@ None of these decisions are cut and dried. There's a very influenctial book titl
 At the same time, people have observed **"anti-patterns"**, bad programming practices, used by poor programmers. Using too many global variables is an anti-pattern, and here is why. **One variable should be available (in scope) to that code that makes use of that variable, and not much else. Functions shouldn't have acess to unrelated variables. A global variable is accessible everywhere, but it is rare to find a variable whose purpose is applicable to every function in your program. As your program get larger, they become even more rare**. 
 
 # * [Adding Globals to Your Programs](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
+
+Let's take a look at the proper way to add globals to your programs.
+
+Adding globals to your program is easy. Just declare a variable outside of any function. Here is the example we showed you earlier, using globals in place of parameters:
+
+```c
+#include <stdio.h>
+
+void passAlong(void);
+void printVariable(void);
+
+int globalVariable;
+
+int main(int argc, const char * argv[])
+{
+    globalVariable = 10;
+    passAlong();
+    return 0;
+}
+
+void passAlong(void)
+{
+    printVariable();
+}
+
+void printVariable(void)
+{
+    printf("globalVariable = %d\n", globalVariable);
+}
+```
+
+This example starts with a variable declaration, right at the top of the program. Because **globalVariable** was declared outside of a function, **globalVariable** becomes a global variable, accessible to each of the program's functions. Notice that none of the functions in this version use parameters. As a reminder, when a function is declared without parameters, use the keyboard **void** in place of a parameter list.
+
+---
+Note
+Did you notice that letter global at the beginning of the global's name ? Many C programmers start each of their global variables with the letter g (for global). Doing this will distinguish your local variables from your global variables.
+
 # * [Static Variables](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [Other Scopes](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [What is next?](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
