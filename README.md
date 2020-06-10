@@ -959,4 +959,9 @@ This works because the value of count is set to 3 before the program starts. Eve
 The scope of count is still limited to the countDown() function. You can't refere tothe count variable in main() or any other function. countDown() can, however, safely get the address of count (&count) and pass that pointer to another function or return it. It is safe because count does not go away when countDown() returns, so that address will always point to a valid variable.
 
 # * [Other Scopes](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
+
+Variables can have scopes besides **local** and **global**. The **static** keyword can be added to a global variable o function to limit its scope to a single source file (like main.c), which is called a module; technically it is a **translation unit**, but only hard-core compiler geeks ever call it that. Also note that variables and functions defined in other modules are not automatically available everywhere. You must use the **extern** keyword to define the functions and global variables you plan to use from other modules. Poke around some of the header (.h) files that you have been #includeing and you will see a lot.
+
+The **extern** and **static** keywords are particularly useful when organizing your program into multiple modules. We will show you how to do that in Chapter 11.
+
 # * [What is next?](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
