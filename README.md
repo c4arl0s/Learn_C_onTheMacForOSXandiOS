@@ -860,7 +860,7 @@ In a nutshell (cascara), you should generally avoid using globals unless there's
 
 So why you learn about them ? There are times when a global is absolutely the correct solution. On the other hande, a telitale sign of an inexperienced programmer is overuse of globals.
 
-None of these decisions are cut and dried. There's a very influenctial book title **Design Patters: Elements of Reusable Object-Oriented Design** written by the **so-called** **"Gang of Four". Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides. The book describes common programming problems and elegant solutions to those problems. These **"design patterns"** as they have become known as, are universal and can be applied to just about become familiar with design patterns.
+None of these decisions are cut and dried. There's a very influenctial book title **Design Patters: Elements of Reusable Object-Oriented Design** written by the **so-called** **"Gang of Four"**. Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides. The book describes common programming problems and elegant solutions to those problems. These **"design patterns"** as they have become known as, are universal and can be applied to just about become familiar with design patterns.
 
 At the same time, people have observed **"anti-patterns"**, bad programming practices, used by poor programmers. Using too many global variables is an anti-pattern, and here is why. **One variable should be available (in scope) to that code that makes use of that variable, and not much else. Functions shouldn't have acess to unrelated variables. A global variable is accessible everywhere, but it is rare to find a variable whose purpose is applicable to every function in your program. As your program get larger, they become even more rare**. 
 
@@ -901,7 +901,62 @@ This example starts with a variable declaration, right at the top of the program
 ---
 Note
 Did you notice that letter global at the beginning of the global's name ? Many C programmers start each of their global variables with the letter g (for global). Doing this will distinguish your local variables from your global variables.
+---
 
 # * [Static Variables](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
+
+So far all of the variables you have defined have a lifespan equal to their scope. Parameter and automatic variables defined in a function are created when the function starts and disappear again when it ends. This is also the same span of code that has access to that variable. Likewise, a global variable exists as long as the program does, and it is accessible anywhere in the program.
+
+A **static variable is a hybrid that has the scope of a automatic variable and longevity of a global variable**. **It is created when the program starts, but its scope (the code that can "see" that variable) is limited to one function or block of code**
+
+Here is an example:
+
+```c
+#include <stdio.h>
+
+void countDown(void);
+
+int main(int argc, const char * argv[]) {
+    countDown();
+    countDown();
+    countDown();
+    countDown();
+    return 0;
+}
+
+void countDown(void)
+{
+    static int count = 3;
+    
+    if (count != 0)
+        printf("%d ...\n", count--);
+    else
+        printf("Liff-off! \n");
+}
+```
+
+The variable **count** is defined as **static** and includes and **initializer**. The variable is created when the program starts and is immediately assigned the value fter the equals sign. This happens only once. Even thought it looks like it would be set to 3 every time the function runs, it does not. And that's goog, because you want it 
+
+---
+Note
+Both globals and statics can have initializers values. If you don't specify an initializer value, the variable is set to 0 before your program starts. Automatic variables can be uninitialized, but global and static variables are always initialized. The value of your initializer mus be a constant; It can't be an expression that uses variables or function calls.
+---
+
+Run the program and you will se this output
+
+```console
+3 ...
+2 ...
+1 ...
+Liff-off! 
+Program ended with exit code: 0
+```
+
+Each time the countdown() function runs it looks at the value in count. If it is not 0, it ouputs that number and then subtracs one from it. If it is 0, it outputs the message "Lift-off!".
+
+This works because the value of count is set to 3 before the program starts. Every time countDown() is called, it decrements the count variable by 1 until it gets to 0.
+
+The scope of count is still limited to the countDown() function. You can't refere tothe count variable in main() or any other function. countDown() can, however, safely get the address of count (&count) and pass that pointer to another function or return it. It is safe because count does not go away when countDown() returns, so that address will always point to a valid variable.
+
 # * [Other Scopes](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
 # * [What is next?](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
