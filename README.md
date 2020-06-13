@@ -58,6 +58,8 @@ Learn_C_onTheMacForOSXandiOS
 # 8. [More Data Types]()
 * [Data Types Beyond Int]()
 
+# 10. [Designing Your Own Data Structures]()
+* [Bundling Data]()
 
 # 7. [Pointers and Parameters](V)
 
@@ -998,4 +1000,14 @@ The name "floating point" refers to the fact that the radix point (also called t
 ---
 
 The three floating point data types are **float, double, and long double**. The typesdiffer in the number of bytes allocated to each and, therefore, the range of values each can hold. The relative sizes of these three types will vary depending on what kind of CPU you are using an other variables. Let's look at a program you can run to tell you the size of these three types in your development environment and to show you various ways to use printf() to print floating point numbers.
+
+# 10. [Designing Your Own Data Structures]()
+
+Chapter 8 introduced several new data types, such as float and char. We discussed the range of each type and the format specifiers used to print each type using printf(). Next, you explored the concept of arrays, focusing on the relationship between char arrays and C strings. Along the way, you discovered the #define statement, C's text substitution mechanism. In Chapters 7, 8 and 9, you learned a lot about pointers.
+
+This chapter will show you how to use existing C types as building blocks to design your own customized data structures. You will also learn how to dynamically allocate memory for those structures as you need it.
+
+
+# * [Bundling Data]()
+
 
