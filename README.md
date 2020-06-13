@@ -53,7 +53,11 @@ Learn_C_onTheMacForOSXandiOS
 * [Static Variables](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-static-variables)
 * [Other Scopes](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-other-scopes)
 * [What is next?](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-what-is-next)
+
                        
+# 8. [More Data Types]()
+* [Data Types Beyond Int]()
+
 
 # 7. [Pointers and Parameters](V)
 
@@ -973,4 +977,25 @@ You may now consider yourself a C programmer, First Class. At this point, you ha
 Sometimes you will use a parameter to pass values between a calling and a called function. Sometimes these parameters are passed by value; other times pointers are used to pass a parameter by address. Some functions return values. Others declared with the void keyword, don't return a value.
 
 So far, all of the variables you have declared are ints. In this chapter, you will focus on nother types of variables, As you will soon see, there are many other data types are out there.
+
+# * [Data Types Beyond Int]()
+
+So far, the focusas been on **ints**, which are extremly useful when it comes to working with integer numbers. You can add two **ints** together. You can check if and **int** is even, odd, or prime. There are a lot of things you can do with **ints**. as long as you limit yourself to integer numbers.
+
+What do you do if you want to work with numbers such as 3.1416 and -98.6?
+Check out this slice of ccode
+
+```c
+int number;
+number = 3.5;
+printf("number = %d \n", number);
+```
+Since number is and int, the number 3.5 will be truncated before it is assigned to number. When this code ends, number will be left with a value of 3 and not 3.5 as intended. Do not despair. C provides **floating point** data types, specifically designed to deal with non-integer numbers.
+
+---
+Note
+The name "floating point" refers to the fact that the radix point (also called the "decimal point") can be placed wnywhere relative to the significant digits, which is what allows floating point values to represent such a wide range of numbers
+---
+
+The three floating point data types are **float, double, and long double**. The typesdiffer in the number of bytes allocated to each and, therefore, the range of values each can hold. The relative sizes of these three types will vary depending on what kind of CPU you are using an other variables. Let's look at a program you can run to tell you the size of these three types in your development environment and to show you various ways to use printf() to print floating point numbers.
 
