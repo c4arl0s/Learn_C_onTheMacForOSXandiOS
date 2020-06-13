@@ -965,3 +965,12 @@ Variables can have scopes besides **local** and **global**. The **static** keywo
 The **extern** and **static** keywords are particularly useful when organizing your program into multiple modules. We will show you how to do that in Chapter 11.
 
 # * [What is next?](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
+
+# 8. [More Data Types]()
+
+You may now consider yourself a C programmer, First Class. At this point, you have mastered all the basic elements of C programming. You know that C programs are made up of functions, one (and only one) of which is named main(). Each of these functions uses keywords (such as if, for, and while), operators (such as =, ++, and *=), and variables to manipulate data and make decitions.
+
+Sometimes you will use a parameter to pass values between a calling and a called function. Sometimes these parameters are passed by value; other times pointers are used to pass a parameter by address. Some functions return values. Others declared with the void keyword, don't return a value.
+
+So far, all of the variables you have declared are ints. In this chapter, you will focus on nother types of variables, As you will soon see, there are many other data types are out there.
+
