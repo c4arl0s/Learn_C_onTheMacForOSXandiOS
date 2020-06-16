@@ -60,6 +60,8 @@ Learn_C_onTheMacForOSXandiOS
 
 # 10. [Designing Your Own Data Structures]()
  * [Bundling Data]()
+ * [Model A: Three Arrays]()
+
  
 # 7. [Pointers and Parameters](V)
 
@@ -1013,4 +1015,71 @@ This chapter will show you how to use existing C types as building blocks to des
 There will be times when your programs will want to bundle together, or associate, related data. For example, suppose you are writing a program to organize your DVD Collection. Imagine the type of information you will want to access for each DVD At the very least, you will want to keep track of the movie's title. You might also want to rate each DVD on a scale from one to ten. Finally, let's add in a comment field you can use to describe your feelings about the movie or perhaps note the whom you loaned this particular movie.
 
 In the next few sections, we will look at two separate approaches to a basic DVD tracking program. Each approach will revolve around a different set of data structyres. One will make use of arrays (Model A) and the other a set of custom designed data structures (model B)
+
+# * [Model A: Three Arrays]()
+
+One way to model you DVD collection is with a separate array for each DVD's attributes:
+
+```c
+#define kMaxDVDs					5000
+#define kMaxTitleLenght		256
+#define kMaxCommentLenght	256
+```
+
+```c
+rating[37] = 8; /* a pretty good DVD */
+```
+
+```c
+float array[5];
+```
+
+```c
+array[0]
+array[1]
+
+array[4]
+```
+
+This statement
+
+```c
+float array[3][5];
+```
+
+declares a two-dimensional array containing 15 floats (3*5 = 15)
+
+```c
+array[0][0]
+
+array[3][5]
+```
+
+here is a three dimensional array
+
+```c
+float array[3][5][10];
+```
+
+3*5*15 = 150 elements
+
+---
+Note
+C allows you to create arrays of any dimension, though you will rarely have need for more than a single dimension
+---
+
+
+```c
+#define kMaxDVDs					5000
+#define kMaxTitleLenght		256
+#define kMaxCommentLenght	256
+
+char rating[kMaxDVDs];
+char title[kMaxDVDs][kMaxTitleLenght];
+char comment[kMaxDVDs][kMaxCommentLeght];
+```
+
+Do the math to know what size you are allocating into the stack.
+
+
 
