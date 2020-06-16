@@ -11,7 +11,7 @@ Learn_C_onTheMacForOSXandiOS
 7. [Pointers and Parameters](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters)
 8. [More Data Types]()
 9. [The Command Line]()
-10. [Designing Your Own Data Structures]()
+10. [Designing Your Own Data Structures](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#10-designing-your-own-data-structures)
 11. [Working With Files]()
 12. [Handling Errors]()
 13. [Advanced Topics]()
@@ -55,12 +55,13 @@ Learn_C_onTheMacForOSXandiOS
 * [What is next?](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-what-is-next)
 
                        
-# 8. [More Data Types]()
+# 8. [More Data Types](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#learn_c_onthemacforosxandios)
 * [Data Types Beyond Int]()
 
-# 10. [Designing Your Own Data Structures]()
- * [Bundling Data]()
- * [Model A: Three Arrays]()
+# 10. [Designing Your Own Data Structures](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#learn_c_onthemacforosxandios)
+ * [Bundling Data](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-bundling-data)
+ * [Model A: Three Arrays](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-model-a-three-arrays)
+ * [Stepping Through the MultiArray Source Code]()
 
  
 # 7. [Pointers and Parameters](V)
@@ -1080,6 +1081,41 @@ char comment[kMaxDVDs][kMaxCommentLeght];
 ```
 
 Do the math to know what size you are allocating into the stack.
+
+# * [Stepping Through the MultiArray Source Code]()
+
+```c
+#include <stdio.h>
+
+#define kMaxDVDs             5000
+#define kMaxTitleLenght      256
+#define kMaxCommentLenght    256
+
+void printDVDTitle(int dvdNumber, char title[][kMaxTitleLenght]);
+
+int main(int argc, const char * argv[]) {
+
+    char title[kMaxDVDs][kMaxTitleLenght];
+    int dvdNumber;
+    printf("The title array takes up %zu bytes of memory\n", sizeof(title));
+    for (dvdNumber=0; dvdNumber<kMaxDVDs; dvdNumber++) {
+        printf("Title of DVD #%d", dvdNumber+1);
+        fgets(title[dvdNumber], kMaxTitleLenght, stdin);
+    }
+    printf("-----\n");
+    for (dvdNumber=0; dvdNumber<kMaxDVDs; dvdNumber++) {
+        printDVDTitle(dvdNumber, title);
+    }
+    return 0;
+}
+```
+
+Interesting !!!
+
+```
+fgets(char *restrict, int, FILE *)
+```
+
 
 
 
