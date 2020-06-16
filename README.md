@@ -15,7 +15,7 @@ Learn_C_onTheMacForOSXandiOS
 11. [Working With Files]()
 12. [Handling Errors]()
 13. [Advanced Topics]()
-
+	
 
 # 7. [Pointers and Parameters](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#learn_c_onthemacforosxandios)
 
@@ -59,8 +59,8 @@ Learn_C_onTheMacForOSXandiOS
 * [Data Types Beyond Int]()
 
 # 10. [Designing Your Own Data Structures]()
-* [Bundling Data]()
-
+ * [Bundling Data]()
+ 
 # 7. [Pointers and Parameters](V)
 
 #	* [Pointers and Parameters](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
@@ -1010,4 +1010,7 @@ This chapter will show you how to use existing C types as building blocks to des
 
 # * [Bundling Data]()
 
+There will be times when your programs will want to bundle together, or associate, related data. For example, suppose you are writing a program to organize your DVD Collection. Imagine the type of information you will want to access for each DVD At the very least, you will want to keep track of the movie's title. You might also want to rate each DVD on a scale from one to ten. Finally, let's add in a comment field you can use to describe your feelings about the movie or perhaps note the whom you loaned this particular movie.
+
+In the next few sections, we will look at two separate approaches to a basic DVD tracking program. Each approach will revolve around a different set of data structyres. One will make use of arrays (Model A) and the other a set of custom designed data structures (model B)
 
