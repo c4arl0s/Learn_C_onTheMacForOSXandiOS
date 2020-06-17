@@ -64,7 +64,7 @@ Learn_C_onTheMacForOSXandiOS
  * [Model A: Three Arrays](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-model-a-three-arrays)
  * [Stepping Through the MultiArray Source Code](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-stepping-through-the-multiarray-source-code)
  * [Printing the DVD Titles](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-printing-the-dvd-titles)
-
+ * [Getting Rid of the Extra Carriage Return]()
  
 # 7. [Pointers and Parameters](V)
 
@@ -1162,7 +1162,17 @@ Check this:
 ```c
 title[5][0] = '\0';
 
-Compilers do not bounds checking of any kind, if you want to access memory beyond the bounds of your array, no one will stop you. This is part of the "charm" of C - it gives you the freedom to write programs that crash in spectacular ways. Your job is to learn how to avoid such pitfalls.
+Compilers do not bounds checking of any kind, if you want to access memory beyond the bounds of your array, no one will stop you. This is part of the "charm" of C - it gives you the freedom to write programs that crash in spectacular ways. Your job is to learn how to avoid such **pitfalls**.
 
+# * [Getting Rid of the Extra Carriage Return]()
 
+If you look back at figure 10-1, you might notuce an extra carriage return after each line of output produced by printingDVDTitle(). That is because when fgets() reads a line, it includes all of the characters on that line, including the newline character at the end of the line. (this is in contrast to scanf(), which stops when it gets to the newline character). Under normal circumstances, the newline character is always the last character in the string buffer, so you can add this like of code (just after the call to fgets()) to get rid of it:
+
+```c
+title[dvdNumber][strlen(title[dvdNumber])-1] = '\0';
+```
+
+Note that you will need to add a #include<string.h> to the top of the line to access the strlen() function. This line of code finds the length of the string that was just typed in. The string includes a carriage return at the very end of it. You substract one from the length, and then store a NUL character right where the carriage returns sits, making the string one byte shorter.
+
+This code is not particularly good because it lacks some basic safeguards. You will learn about error and range checking in a later chapter, where we will explain what's wrong with this code. But for now, it is good enough.
 
