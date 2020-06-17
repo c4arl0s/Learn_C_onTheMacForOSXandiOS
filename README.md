@@ -57,12 +57,13 @@ Learn_C_onTheMacForOSXandiOS
                        
 # 8. [More Data Types](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#learn_c_onthemacforosxandios)
 * [Data Types Beyond Int]()
+* [Floatsizer]()
 
 # 10. [Designing Your Own Data Structures](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#learn_c_onthemacforosxandios)
  * [Bundling Data](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-bundling-data)
  * [Model A: Three Arrays](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-model-a-three-arrays)
  * [Stepping Through the MultiArray Source Code](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-stepping-through-the-multiarray-source-code)
- * [Printing the DVD Titles]()
+ * [Printing the DVD Titles](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-printing-the-dvd-titles)
 
  
 # 7. [Pointers and Parameters](V)
@@ -1004,6 +1005,37 @@ The name "floating point" refers to the fact that the radix point (also called t
 ---
 
 The three floating point data types are **float, double, and long double**. The typesdiffer in the number of bytes allocated to each and, therefore, the range of values each can hold. The relative sizes of these three types will vary depending on what kind of CPU you are using an other variables. Let's look at a program you can run to tell you the size of these three types in your development environment and to show you various ways to use printf() to print floating point numbers.
+
+# * [Floatsizer]()
+
+```c
+#include <stdio.h>
+
+int main(int argc, const char * argv[]) {
+    float floatNumber;
+    double doubleNumber;
+    long double longDoubleNumber;
+    
+    floatNumber = 12345.67890123456789f;
+    doubleNumber = 12345.67890123456789;
+    longDoubleNumber = 12345.67890123456789L;
+    
+    printf("size of float is: %zu bytes\n", sizeof(floatNumber));
+    printf("size of double is: %zu bytes\n", sizeof(doubleNumber));
+    printf("size of long double is: %zu bytes\n", sizeof(longDoubleNumber));
+    return 0;
+}
+```
+
+```console
+size of float is: 4 bytes
+size of double is: 8 bytes
+size of long double is: 16 bytes
+Program ended with exit code: 0
+```
+
+
+
 
 # 10. [Designing Your Own Data Structures]()
 
