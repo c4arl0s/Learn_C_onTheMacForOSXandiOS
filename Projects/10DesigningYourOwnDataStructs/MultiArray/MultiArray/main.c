@@ -22,11 +22,15 @@ int main(int argc, const char * argv[]) {
     for (dvdNumber=0; dvdNumber<kMaxDVDs; dvdNumber++) {
         printf("Title of DVD #%d", dvdNumber+1);
         fgets(title[dvdNumber], kMaxTitleLenght, stdin);
-        fgets(<#char *restrict#>, <#int#>, <#FILE *#>)
     }
     printf("-----\n");
     for (dvdNumber=0; dvdNumber<kMaxDVDs; dvdNumber++) {
         printDVDTitle(dvdNumber, title);
     }
     return 0;
+}
+
+void printDVDTitle(int dvdNumber, char title[][kMaxTitleLenght])
+{
+ printf("Title of DVD #%d: %s\n", dvdNumber+1, title[dvdNumber]);
 }

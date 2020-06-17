@@ -61,7 +61,8 @@ Learn_C_onTheMacForOSXandiOS
 # 10. [Designing Your Own Data Structures](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#learn_c_onthemacforosxandios)
  * [Bundling Data](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-bundling-data)
  * [Model A: Three Arrays](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-model-a-three-arrays)
- * [Stepping Through the MultiArray Source Code]()
+ * [Stepping Through the MultiArray Source Code](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-stepping-through-the-multiarray-source-code)
+ * [Printing the DVD Titles]()
 
  
 # 7. [Pointers and Parameters](V)
@@ -1071,7 +1072,7 @@ C allows you to create arrays of any dimension, though you will rarely have need
 
 
 ```c
-#define kMaxDVDs					5000
+#define kMaxDVDs         5000
 #define kMaxTitleLenght		256
 #define kMaxCommentLenght	256
 
@@ -1116,6 +1117,20 @@ Interesting !!!
 fgets(char *restrict, int, FILE *)
 ```
 
+# * [Printing the DVD Titles]()
+
+```c
+void printDVDTitle(int dvdNumber, char title[][kMaxTitleLength])
+{
+ printf("Title of DVD #%d: %s\n", dvdNumber+1, title[dvdNumber]);
+}
+```
+Check this:
+
+```c
+title[5][0] = '\0';
+
+Compilers do not bounds checking of any kind, if you want to access memory beyond the bounds of your array, no one will stop you. This is part of the "charm" of C - it gives you the freedom to write programs that crash in spectacular ways. Your job is to learn how to avoid such pitfalls.
 
 
 
