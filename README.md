@@ -65,6 +65,7 @@ Learn_C_onTheMacForOSXandiOS
  * [Stepping Through the MultiArray Source Code](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-stepping-through-the-multiarray-source-code)
  * [Printing the DVD Titles](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-printing-the-dvd-titles)
  * [Getting Rid of the Extra Carriage Return]()
+ * [Finishing Model A]()
  
 # 7. [Pointers and Parameters](V)
 
@@ -1175,4 +1176,39 @@ title[dvdNumber][strlen(title[dvdNumber])-1] = '\0';
 Note that you will need to add a #include<string.h> to the top of the line to access the strlen() function. This line of code finds the length of the string that was just typed in. The string includes a carriage return at the very end of it. You substract one from the length, and then store a NUL character right where the carriage returns sits, making the string one byte shorter.
 
 This code is not particularly good because it lacks some basic safeguards. You will learn about error and range checking in a later chapter, where we will explain what's wrong with this code. But for now, it is good enough.
+
+# * [Finishing Model A]()
+
+In the beginning of the chapter, we described a program that would track your DVD collection. The goal was to look at two different approaches to solving the same problem. The first approach, Model A, uses three arrays to hold a rating, title, and comment to each DVD in the collection:
+
+```c
+#define kMaxDVDs             5000
+#define kMaxTitleLenght      256
+#define kMaxCommentLenght    256
+```
+
+```c
+char rating[kMaxDVDs];
+char title[kMaxDVDs][kMaxTitleLenght];
+char comment[kMaxDVDs][kMaxCommentLenght];
+```
+
+Before you move on to Model B, take a closer look at the memory used by the model A arrays:
+
+ * The array rating uses 1 byte per DVD (enough for a 1-byte rating from 1 to 10)
+ * The array title uses 256 bytes per DVD (enough for a text string holding the movie title, up to 255 bytes in length, plus the terminating NUL character).
+ * The array comment also uses 256 bytes per DVD (enough for a text string holding a comment about the DVD, up to 256 bytes in length, plus the terminating NUL Character)
+
+Added together, Model A allocates 513 bytes (1 byte + 256 bytes + 256 bytes) per DVD. Since Model A allocates space for 5,000 DVDs when it declares its three key arrays, it uses 2,565,000 bytes (513*5000) for its data
+
+Since the program really only needs 513 bytes per DVD, would not it be nice if you could allocate the memory for a DVD onle when you need it ? With this type of approach, if your collection only consisted of 50 DVDs, you would only have to use 25,650 bytes of memory (50*513=25,650), instead of 2,565,000.
+
+---
+Note
+Memory usage is just one factor to take into account when deciding which data structure to use in your program. Another is ease of use. If you have plenty of memory available. Model A takes less time to implement and is much easier to work with. In that case, be damned; go for the simpler solution. The cool thing about being the programmer is that you get to decide what's best in any given situation.
+---
+
+As you will see by the end of this chapter, C provides a mechanism for allocating memory as you need it. Model B takes a first step toward memory efficiency by creating a simple data structure that contains all the information relevant to a single DVD. Later in this chapter, you will learn how to allocate just enough memory for a single structure.
+
+
 
