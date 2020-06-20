@@ -1266,6 +1266,53 @@ struct Auto {
 autoA = autoB;
 ```
 
+# * [StructSize.xproj]()
+
+```c
+#include <stdio.h>
+#include "StructSize.h"
+
+int main(int argc, const char * argv[]) {
+    struct DVDInfo dvdInfo;
+    printf("rating field: %4zu bytes \n", sizeof(dvdInfo.rating));
+    printf("title field: %4zu bytes \n", sizeof(dvdInfo.title));
+    printf("comment field: %4zu bytes \n", sizeof(dvdInfo.comment));
+    printf("dvdInfo Sruct: %4zu bytes \n", sizeof(dvdInfo));
+}
+```
+
+```c
+#ifndef StructSize_h
+#define StructSize_h
+
+#define kMaxTitleLenght      256
+#define kMaxCommentLenght    256
+
+struct DVDInfo {
+ int rating;
+ char title[kMaxTitleLenght];
+ char comment[kMaxCommentLenght];
+};
+
+
+#endif /* StructSize_h */
+```
+
+console
+
+```console
+rating field:    4 bytes 
+title field:  256 bytes 
+comment field:  256 bytes 
+dvdInfo Sruct:  516 bytes 
+Program ended with exit code: 0
+```
+
+Concepts
+
+- Alignment
+- Padding
+
 
 
           
