@@ -1313,6 +1313,39 @@ Concepts
 - Alignment
 - Padding
 
+# * [Passing a Struct as a Parameter]()
 
+Write the prototype function:
+
+```console
+void printDVD(struct DVDInfo *dvdInfo);
+```
+
+```c
+#include <stdio.h>
+#include "StructSize.h"
+
+void printDVD(struct DVDInfo *dvdInfo);
+
+int main(int argc, const char * argv[]) {
+    struct DVDInfo dvdInfo;
+    printDVD(&dvdInfo);
+    return 0;
+}
+
+void printDVD(struct DVDInfo *dvdInfoPointer)
+{
+    printf("rating: %d \n", (*dvdInfoPointer).rating);
+    printf("title: %s \n", dvdInfoPointer->title);
+    printf("comment: %s \n", dvdInfoPointer->comment);
+}
+```
+
+```console
+rating: -272633120 
+title: \376 
+comment:  
+Program ended with exit code: 0
+```
 
           
