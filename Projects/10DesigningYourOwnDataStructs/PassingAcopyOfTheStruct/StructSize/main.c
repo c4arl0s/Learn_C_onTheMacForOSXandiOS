@@ -9,17 +9,17 @@
 #include <stdio.h>
 #include "StructSize.h"
 
-void printDVD(struct DVDInfo *dvdInfoPointer);
+void printDVD(struct DVDInfo dvdInfo);
 
 int main(int argc, const char * argv[]) {
     struct DVDInfo dvdInfo;
-    printDVD(&dvdInfo);
+    printDVD(dvdInfo);
     return 0;
 }
 
-void printDVD(struct DVDInfo *dvdInfoPointer)
+void printDVD(struct DVDInfo dvdInfo)
 {
-    printf("rating: %d \n", (*dvdInfoPointer).rating);
-    printf("title: %s \n", dvdInfoPointer->title);
-    printf("comment: %s \n", dvdInfoPointer->comment);
+    printf("rating: %d \n", dvdInfo.rating);
+    printf("title: %s \n", dvdInfo.title);
+    printf("comment: %s \n", dvdInfo.comment);
 }

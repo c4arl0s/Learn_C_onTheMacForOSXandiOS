@@ -1325,7 +1325,7 @@ void printDVD(struct DVDInfo *dvdInfo);
 #include <stdio.h>
 #include "StructSize.h"
 
-void printDVD(struct DVDInfo *dvdInfo);
+void printDVD(struct DVDInfo *dvdInfoPointer);
 
 int main(int argc, const char * argv[]) {
     struct DVDInfo dvdInfo;
@@ -1348,4 +1348,35 @@ comment:
 Program ended with exit code: 0
 ```
 
-          
+# * [Passing a copy of the struct]()
+
+```c
+void printDVD(struct DVDInfo dvdInfo)
+{
+    printf("rating: %d \n", dvdInfo.rating);
+    printf("title: %s \n", dvdInfo->title);
+    printf("comment: %s \n", dvdInfo->comment);
+}
+```
+
+```c
+#include <stdio.h>
+#include "StructSize.h"
+
+void printDVD(struct DVDInfo dvdInfo);
+
+int main(int argc, const char * argv[]) {
+    struct DVDInfo dvdInfo;
+    printDVD(dvdInfo);
+    return 0;
+}
+
+void printDVD(struct DVDInfo dvdInfo)
+{
+    printf("rating: %d \n", dvdInfo.rating);
+    printf("title: %s \n", dvdInfo.title);
+    printf("comment: %s \n", dvdInfo.comment);
+}
+```
+
+
