@@ -65,8 +65,10 @@ Learn_C_onTheMacForOSXandiOS
  * [Stepping Through the MultiArray Source Code](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-stepping-through-the-multiarray-source-code)
  * [Printing the DVD Titles](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#-printing-the-dvd-titles)
  * [Getting Rid of the Extra Carriage Return]()
- * [Finishing Model A]()
- 
+ * [Finishing Model A]() 
+ * [Model B: The Structure Approach]()
+
+
 # 7. [Pointers and Parameters](V)
 
 #	* [Pointers and Parameters](https://github.com/c4arl0s/Learn_C_onTheMacForOSXandiOS#7-pointers-and-parameters-1)
@@ -1210,5 +1212,60 @@ Memory usage is just one factor to take into account when deciding which data st
 
 As you will see by the end of this chapter, C provides a mechanism for allocating memory as you need it. Model B takes a first step toward memory efficiency by creating a simple data structure that contains all the information relevant to a single DVD. Later in this chapter, you will learn how to allocate just enough memory for a single structure.
 
+# * [Model B: The Structure Approach]()
+
+As mentioned, your DVD program must keep track of a rating (from 1 to 10) the DVDs title, and a comment about the DVD.
 
 
+```c
+#define kMaxDVDs             5000
+#define kMaxTitleLenght      256
+#define kMaxCommentLenght    256
+```
+
+```c
+char rating[kMaxDVDs];
+char title[kMaxDVDs][kMaxTitleLenght];
+char comment[kMaxDVDs][kMaxCommentLenght];
+```
+
+C provides the perfect mechanism for wrapping all three of these variables in one tidy bundle. A **struct** allows you to associate any number of variables together under a single name. Here is an example of a **struct** declaration:
+
+```c
+
+#define kMaxTitleLenght      256
+#define kMaxCommentLenght    256
+
+struct DVDInfo {
+ int rating;
+ char title[kMaxTitleLenght];
+ char comment[kMaxCommentLenght];
+};
+```
+
+This struct declaration creates a new type called struct DVDInfo. Just as you would use a type like int or float to declare a variable, you can use this new type to declare an individual struct. Here is an example:
+
+```c
+struct DVDInfo info;
+```
+
+To access the fields of a struct, use the dot operator.
+
+```c
+info.rating = 7;
+```
+
+An entire struct can be copied to another struct using the assignment (=) operator:
+
+```c
+struct Auto {
+ char model;
+ char year;
+} autoA, autoB;
+
+autoA = autoB;
+```
+
+
+
+          
