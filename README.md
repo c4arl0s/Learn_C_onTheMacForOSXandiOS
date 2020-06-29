@@ -1379,4 +1379,56 @@ void printDVD(struct DVDInfo dvdInfo)
 }
 ```
 
+```console
+rating: -272633120 
+title: \376
+comment:  
+Program ended with exit code: 0
+```
 
+# * [ParamAddress.xcode]()
+
+```c
+    struct DVDInfo dvdInfo;
+    printf("Address of dvdInfo.rating in main(): %28p \n", &(dvdInfo.rating));
+```
+
+```console
+Address of dvdInfo.rating in main():               0x7ffeefbff270 
+Program ended with exit code: 0
+```
+
+Prototype function 
+
+```c
+void printParamInfo(struct DVDInfo *dvdInfoPointer, struct DVDInfo);
+```
+
+Function:
+
+```c
+void printParamInfo(struct DVDInfo *dvdInfoPointer, struct DVDInfo dvdInfo)
+{
+    printf("Address of dvdInfoPointer->rating in printParamInfo is: %10p \n",&(dvdInfoPointer->rating));
+    printf("Address of dvdInfo->rating in printParamInfo is: %10p \n",&(dvdInfo.rating));
+}
+```
+
+Calling the function in main():
+
+```c
+struct DVDInfo dvdInfo;
+printf("Address of dvdInfo.rating in main(): %28p \n", &(dvdInfo.rating));
+printParamInfo(&dvdInfo, dvdInfo);
+return 0;
+```
+
+Output console
+
+```console
+Address of dvdInfo.rating in main():               0x7ffeefbff270 
+Address of dvdInfoPointer->rating in printParamInfo is: 0x7ffeefbff270 
+Address of dvdInfo->rating in printParamInfo is: 0x7ffeefbff040 
+Program ended with exit code: 0
+```
+ 
