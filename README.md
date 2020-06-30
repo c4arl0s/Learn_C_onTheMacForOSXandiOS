@@ -1431,4 +1431,48 @@ Address of dvdInfoPointer->rating in printParamInfo is: 0x7ffeefbff270
 Address of dvdInfo->rating in printParamInfo is: 0x7ffeefbff040 
 Program ended with exit code: 0
 ```
+
+# * [Hexadecimal Memory Addresses]()
+
+Computer Engineers love hexadecimal because every two hexadecimal digits is exactly one byte, which makes it well suited for describing values stored in RAM.
+
+C also supports a (rarely used) notation called octal. Octal numbers are base 8, using only the digits 0 through 7. Octal numbers begin with a 0 digit. Thus, the constant 123 is one hundred and twenty three, while the constant 0123 is eighty three (1*8^2+2*8^1+3*8^0 = 1*64+2*8+3). Octal was popular in some of the very earliest computers that uses 6-bit bytes, but when CPUs moved to 8-bit bytes it was no longer conveniente
+
+# * [struct Arrays]()
+
+Just as you can declare an array of chars or ints, you can also declare an array of structs:
+
+```c
+#define kMaxDVDs 5000
+struct DVDInfo infoDVDs[kMaxDVDs];
+```
+
+This declaration creates an array of 5,000 structs of type DVDInfo. The array is named infoDVDs. Each of the 5,000 structs will have the three fields: rating, title, and comment, You access the fields of the structs as you might expect. Here is an example (note the use of the all important . operator):
+
+```c
+infoDVDs[10].rating = 9;
+```
+
+You now have an equivalent to the first DVD tracking data structure. Where the first model used three arrays, you now have a solution that uses a single array. As you will see when you start writing your own programs, packing your data in a **struct** makes life a bit simpler. Instead of passing three parameters each time you need to pass a DVD to a function, you can simply pass a **struct**.
+
+From a memory standpoint, both DVD tracking solutions cost the same. With three separate arrays, the cost is as follows:
+
+
+|             |     5,000 | bytes | /*rating array*/  |   |
+|-------------|-----------|-------|-------------------|---|
+| 5,000 * 256 | 1,280,000 | bytes | /*titke array*/   |   |
+| 5,000 * 256 | 1,280,000 | bytes | /*comment array*/ |   |
+|             | --------- | ----- |                   |   |
+|             | 2,565,000 | bytes |                   |   |	
  
+
+With an array of structs, this is the cost:
+
+```c
+5,000 * 513 = 2,565,000 bytes /*Cost of array of 5,000 DVDInfo structs*/
+```
+
+So what can you do to cut this memory cost down ? we throught you would never ask!
+
+
+
