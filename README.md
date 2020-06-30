@@ -1474,5 +1474,24 @@ With an array of structs, this is the cost:
 
 So what can you do to cut this memory cost down ? we throught you would never ask!
 
+# * [Allocating Your Own Memory]()
 
+One of the limitations of an array-based DVD tracking model is that arrays are not resizable. When you define an array, you have to specify exactly how many elments make up your array. For example, this code defines an array of 5,000 DVDInfo structs:
 
+```c
+#define kMaxDVDs 5000
+struct DVDInfo infoDVDs[kMaxDVDs];
+```
+
+As mencioned, this array will take up 2,565,000 bytes f memory, whether you use the array to track 1 DVD or 5,000. If you know idvance exactly hoe many elements your array requires, arrays are just fine. In this case of this DVD tracking program, using an array just is not practical. For example, if your DVD collection consist entirely of  test DVD that came with your DVD burner and a rare bootleg of Gilligan's Island outtakes, a 5,000 DVDs ? No matter what number you pick for kMaxDVDs, there's always the chance that it won`t prove large enough.
+
+The problem here is that arrays are just not flexible enought to do what you want. Instead of trying to predict the amount of memory you will need in advance, you need a method that will give you a chunck of memory the exact size of a DVDInfo struct, as you need it. In more technical terms, you need to **allocate** and **manage** you own memory.
+
+---
+Note
+Allocating your own memory, called **dynamic memory allocation**, is a very important programming skill to learn, An **automatic int variable** is invaluable in writing a **for** loop when you know you are going to need one **int** variable**. But you can't declare variables if you don't know how many or what kinds you are going to need. Your program will have to wait until it reads information from a file, the user asks to create a new document, they click on a button to add a DVD, or they drop in a picture; at that point your program will have to decide what variables it will need to represent those things and allocate them. As you progress to writing more useful programs, most of your data will be dinamically allocated.
+---
+
+When your program starts running, your operaring system (MAC OS X, Unix, and Windows are all examples of operating systems) carves out a chunk of memory for the exclusive use of your application. Some of this memory is used to hold things like your application's global variables. As your application runs, some of this memory will be allocated to **main()'s** local variables. When **main()** calls the function, memory is allocated for tha function's local variables. When that function returns, the memory allocated for its local variables is **freed up** (sometimes called **deallocated** or **released**). This memory becomes available to be allocated all over again. It is just like recycling.
+
+In the next few sections, you will leran about some functions you can call to **allocate** a block of memory and to free that memory (**return in to the pool of available memory**). When your are don with it. Ultimately, you will combine these functions with a data structture called a **linked list** to provide a more memory-efficient, and more flexible, alternative to the array.
