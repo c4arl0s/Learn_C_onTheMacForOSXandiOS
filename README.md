@@ -1495,3 +1495,36 @@ Allocating your own memory, called **dynamic memory allocation**, is a very impo
 When your program starts running, your operaring system (MAC OS X, Unix, and Windows are all examples of operating systems) carves out a chunk of memory for the exclusive use of your application. Some of this memory is used to hold things like your application's global variables. As your application runs, some of this memory will be allocated to **main()'s** local variables. When **main()** calls the function, memory is allocated for tha function's local variables. When that function returns, the memory allocated for its local variables is **freed up** (sometimes called **deallocated** or **released**). This memory becomes available to be allocated all over again. It is just like recycling.
 
 In the next few sections, you will leran about some functions you can call to **allocate** a block of memory and to free that memory (**return in to the pool of available memory**). When your are don with it. Ultimately, you will combine these functions with a data structture called a **linked list** to provide a more memory-efficient, and more flexible, alternative to the array.
+
+# * [Using malloc()]()
+
+The Standard Library function of **malloc()** allows you to allocate a block of memory of a specified size. To access **malloc()**, you need to include the file **stdlib.h**.
+
+```c
+#include<stdlib.h>
+```
+
+**malloc()** takes a single parameter, the size of the requested block, in byes.
+**malloc()** returns a pointer to the newly allocated block of memory. Here is the function prototype:
+
+```c
+void *malloc( size_t size );
+```
+
+The block of memory comes from a vast reservoir of memory called the **heap**. The heap consist of most of the unused addresses in your computer  - those not already used by your program's code, **static and automatic variables**, and some miscellaneous addresses reserved by the operating system.
+
+If **malloc()** can't allocate a block of memory the size you requested, it returns a pointer with the value NULL. **NULL** is a constant, defined to have a value of zero, used to specify an invalid pointer. In other words, a pointer with a value o NULL does not point to a legal memory address. You learned about NULL in Chapter 7. Now you will get a chance to use it.
+
+You might be scratching your head over **malloc()**'s return type, void*. C allows you to declare a pointer to void, It might appear **oxymoronic** (a pointer to nothing), but it turns out to be very useful. C interprets a void* as a **"pointer to a variable of unknown type"**. It is not that the pointer points to nothing; it points to something but the compiler does not know what.
+
+You can use a void pointer like any other pointer. You can assign it an address, pass it as a variable, and so on. The only thing you can't do is this:
+
+```c
+void *nothing;
+*nothing = 1;
+```
+
+You can't assign anything to the **"value"** that nothing points to because the compiler does not know what that is. **Is it an int?** A float ? A struct of some kind ?
+
+So what good are void pointers ? Bear with us and you will find out.
+ 
