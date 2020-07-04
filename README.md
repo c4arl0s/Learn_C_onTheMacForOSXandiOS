@@ -1527,4 +1527,29 @@ void *nothing;
 You can't assign anything to the **"value"** that nothing points to because the compiler does not know what that is. **Is it an int?** A float ? A struct of some kind ?
 
 So what good are void pointers ? Bear with us and you will find out.
- 
+
+# * [Converting the Type Returned by malloc()]()
+
+Here is a code fragment that allocates a single **DVDInfo struct**:
+
+```c
+struct DVDInfo *dvdInfoPointer;
+dvdInfoPointer = malloc(sizeof(struct DVDInfo));
+```
+
+In general, you will convert the **void** pointer returned by **malloc()** to the pointer type you really want. Here is how it is typically done. The first line of code declares a new variable, dvdInfoPointer, which is a pointer to a DVDInfo struct. At this time, dvdInfoPointer does not point to a DVDInfo struct. You have just told the compiler that dvdInfoPointer is designed to point to a DVDInfor struct.
+
+The second line of the code calls **malloc()** to allocate a block of memory the size of a DVDInfo struct. The **sizeof** operator results in a **size_t** integer,the exactly type you need to pass as a parameter to **malloc()**. How convenient!
+
+On the right side of the **=** operator is a void * and on the left side is a struct DVDInfo *. The compiler will normally complain if you try to assign a pointer of one type to a pointer of a different type. Consiidere the confution thatcould result if you set a pointer to a **char** to the address of an **int**.
+
+The compiler makes an exception for void pointers. It allows you to assign a vooid pointer to any kind of pointer, and any kind of pointerca be assigned to a void pointer. In effect, a void * is a wildcard pointer trhat can point to anytthing in memory. C trusts that you know what it actually poins to.
+
+So you could have used a **typecast** here to make this more explicit:
+
+```c
+dvdInfoPointer = (struct DVDInfo *)malloc(sizeof(struct DVDInfo));
+```
+
+Thowgh this **explicit typecaste** is not strictly necessary, it makes your intenstions quite crear and allows the compiler to step in with a warning if you have got your types mixed up. Doenn't worry if this is confusing. You will learn all about [typecasting in Chapter 13]()
+
