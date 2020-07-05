@@ -1568,3 +1568,26 @@ dvdInfoPointer->rating = 7;
 You need to understand the difference between a **block of memory** allocated using **malloc()** and a **block of memory that corresponds to a local variable**. When a function declares a local variable, the memory associated with that variable is temporary. As soon as the function exist, the block of memory associated with that memory **is returned to the pool of available memory**.
 
 **A block of memory that you allocate using malloc()** sticks around until you specifically return it to the pool of available memory (**heap**) or until your program exists.
+
+# * [Free()]()
+
+The standard Library provides a function called **free()** that returns a previously allocated block of memory back to the pool of available memory. Here is the function prototype:
+
+```c
+void free(void *ptr);
+```
+
+**free()** takes a single argument, a pointer to the first byte of a previously allocated block of memory. The following line returns the block allocated earlier to the free memory pool:
+
+```c
+free(dvdInfoPointer);
+```
+
+Use **malloc()** to allocate a block of memory. Use **free()** to free up a block of memory allocated via **malloc()**. You are responsible for freeing up any memory that you allocate. You create it; you free it. That said, when a program exists, the operating system automatically frees up all memory allocated by that program.
+
+---
+Caution
+Never put a fork in an electrical outlet. Never pass an address to free() that didn't come from malloc(), calloc() or any other function that returns an allocated block of memory from the heap. Both will make you extremely unhappy!
+---
+
+
