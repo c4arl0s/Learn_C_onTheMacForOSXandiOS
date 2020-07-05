@@ -1553,3 +1553,18 @@ dvdInfoPointer = (struct DVDInfo *)malloc(sizeof(struct DVDInfo));
 
 Thowgh this **explicit typecaste** is not strictly necessary, it makes your intenstions quite crear and allows the compiler to step in with a warning if you have got your types mixed up. Doenn't worry if this is confusing. You will learn all about [typecasting in Chapter 13]()
 
+# * [Calloc()]()
+
+An alternative to the malloc() function is calloc(). calloc() also allocates a block of memory, exactly the way mallo() does, but it fills that block of bytes with zeros before it returns.
+
+# * [Using the allocated Memory Block]()
+
+If **malloc()** succeded, dvdInforPointer points to a struct of type DVDInfo. For the duration of the program, you can use dvdInfoPointer to access the fields of this newly allocated struct:
+
+```c
+dvdInfoPointer->rating = 7;
+```
+
+You need to understand the difference between a **block of memory** allocated using **malloc()** and a **block of memory that corresponds to a local variable**. When a function declares a local variable, the memory associated with that variable is temporary. As soon as the function exist, the block of memory associated with that memory **is returned to the pool of available memory**.
+
+**A block of memory that you allocate using malloc()** sticks around until you specifically return it to the pool of available memory (**heap**) or until your program exists.
