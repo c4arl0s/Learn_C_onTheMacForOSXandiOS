@@ -1622,6 +1622,74 @@ The linked list is one of the most widely used techniques for organizing data st
 
 Figure 10-4 shows a linked list containing three **structs**. A linked list starts with a master pointer. The master pointer is a pointer variable that points to the first **struct** in the list, also known as **the head**. The **fisrt struct** contains a field, also a pointer, which **points to the second struct** in the linked list. **The second struct** contains a pointer field that points to the third element. The linked list in Figure 10-4 ends with the third element. The pointer field in the last element of a linked list is typically set to NULL. The last element in the list is known as **the tail**.
 
+# * [Why Use Linked Lists]()
 
+**Linked lists allow you to be extremely memory efficient. Using a linked list, you can implement your DVD tracking data structure, allocating exactly the number of structs that you need. - **no more, no less** - Each time a DVD is added to your collection, you will allocate one new struct and add it to the linked list.
+
+**A linked list starts out as a single master pointer. When you want to add an element to the list, call **malloc()** to allocate a block of memory for the new element. Next, make the master pointer point to the next block. Finally, set the new block's next element pointer to NULL.
+
+# * [Creating a Linked List]()
+
+The first step in creating a linked list is the design of the linked list **struct**
+Here is a sample:
+
+```c
+#define kMaxTitleLenght      256
+#define kMaxCommentLenght    256
+
+struct DVDInfo {
+    int rating;
+    char title[kMaxTitleLenght];
+    char comment[kMaxCommentLenght];
+    
+    struct DVDInfo *next;
+};
+```
+
+The change here is the addition of a fourth field, a pointer to a DVDInfo struct. This field is the link that connects two different DVDInfo structs together. If firstPointer is a pointer to one DVDInfo struct and secondPointer is a pointer to a second struct, this line:
+
+```c
+firstPointer->next->rating = 7;
+```
+
+Run the template program written for this theme:
+
+```
+int main(int argc, const char * argv[]) {
+    struct DVDInfo dvdInfo;
+    printf("rating field: %4zu bytes \n", sizeof(dvdInfo.rating));
+    printf("title field: %4zu bytes \n", sizeof(dvdInfo.title));
+    printf("comment field: %4zu bytes \n", sizeof(dvdInfo.comment));
+    printf("next field: %4zu bytes \n", sizeof(dvdInfo.next));
+    printf("dvdInfo Sruct: %4zu bytes \n", sizeof(dvdInfo));
+}
+```
+
+console
+
+```console
+rating field:    4 bytes 
+title field:  256 bytes 
+comment field:  256 bytes 
+next field:    8 bytes 
+dvdInfo Sruct:  528 bytes 
+Program ended with exit code: 0
+```
+
+## Why the next pointer is 8 byes ?
+
+
+Using the next field to get from one struct to the next is also known as **traversing** a linked list.
+
+The next (and final) program for this chapter will incorporate the new version of the DVDInfo struct to demonstrate a more memory-efficient DVD tracking program. This program is pretty long, so you may want to take a few moments to let the dog out and answer your email.
+
+---
+Note
+There are many variants of the linked list. If you connect the last element of a linked list to the first element, you create an unending **circular** list.
+
+If you add a **prev** field to the struct and use it to point to the previous element in the list (in addition to the next one) you have created a **doubly-linked list**. This technique allows you to traverse the linked list in two directions.
+---
+
+As you gain more programming experience, you will want to check out some books on data structures. Three books well worth exploring are **Algorithms in C, parts 1-5 by Robert Sedgewick (Addison-Wesley 2001), Data Structures and C programs by Christopger J. Van Wik (Addison-Wesley 1990), and our personal favorite, Fundamental Algorithms, volume one of Donald Knuth's The Art of Computer Programming Series (Addison-Wesley 1997).
 
 
