@@ -1590,4 +1590,29 @@ Caution
 Never put a fork in an electrical outlet. Never pass an address to free() that didn't come from malloc(), calloc() or any other function that returns an allocated block of memory from the heap. Both will make you extremely unhappy!
 ---
 
+# * [Keeping Track of that Address!]()
+
+The address returned by **malloc()** is critical. If you lose it. You have lost access to the block of memory you just allocate. Even worse, you can never **free()** the block, and it will just sit there, wasting valuable memory, for the duration of your program. This is called a **memory leak**.
+
+Here are the essential rules for allocating your own blocks of memory
+
+1. Allocate a block of the correct size using **malloc()** (or any similar function) and save the pointer **malloc()** returns in a variable.
+2. Use the returned pointer to access the variables in that block of memory however you please.
+3. When you are done with it, pass the original pointer to **free()** so that memory block can be recycled.
+4. Once you pass an address to **free()**, never use it again - in another call to **free()** or for any other purposes. If you have a pointer variable that still points to that address, set it to NULL.
+
+---
+Note
+One great way to lose a block's address is to call **malloc()** inside a function, saving address returned by **malloc()** in a local variable, and then fall to call **free()** before the function exits. Your local variable goes away, taking the address of your new block with it!
+---
+
+There are many ways to **keep track of newly allocated block of memory**. As you design your program, you will figure out which approach makes the most sense for your particular situation. **One technique** you will find useful is to place the pointer inside a special data structure known as a **linked list**.
+
+---
+Tip
+Modern computers have so much memory that you are likely never to notice if your program is leaking small amounts of memory. One way to check is to use any of Xcode memory leak detection tools (and there are several).
+Get into the practice of accasionally profiling your program using Xcode's Instruments tool. It will analyze your program and look for all kinds of problems - like memory leaks
+---
+
+
 
