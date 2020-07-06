@@ -1614,5 +1614,14 @@ Modern computers have so much memory that you are likely never to notice if your
 Get into the practice of accasionally profiling your program using Xcode's Instruments tool. It will analyze your program and look for all kinds of problems - like memory leaks
 ---
 
+# * [Working with Linked Lists]()
+
+The linked list is one of the most widely used techniques for organizing data structures in C. **A linked list is a series of structs**, each of which contains a pointer field. Each struct in the series uses its pointer to point to the next **struct** in the series. Figure 10-4 shows a linked list containing three element.
+
+![Screen Shot 2020-07-06 at 11 22 52](https://user-images.githubusercontent.com/24994818/86616154-0e4c8580-bf7b-11ea-9b28-856e9b6c5034.png)
+
+Figure 10-4 shows a linked list containing three **structs**. A linked list starts with a master pointer. The master pointer is a pointer variable that points to the first **struct** in the list, also known as **the head**. The **fisrt struct** contains a field, also a pointer, which **points to the second struct** in the linked list. **The second struct** contains a pointer field that points to the third element. The linked list in Figure 10-4 ends with the third element. The pointer field in the last element of a linked list is typically set to NULL. The last element in the list is known as **the tail**.
+
+
 
 
