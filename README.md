@@ -1472,18 +1472,18 @@ With an array of structs, this is the cost:
 5,000 * 513 = 2,565,000 bytes /*Cost of array of 5,000 DVDInfo structs*/
 ```
 
-So what can you do to cut this memory cost down ? we throught you would never ask!
+So what can you do to cut this memory cost down ? We thought you would never ask!
 
 # * [Allocating Your Own Memory]()
 
-One of the limitations of an array-based DVD tracking model is that arrays are not resizable. When you define an array, you have to specify exactly how many elments make up your array. For example, this code defines an array of 5,000 DVDInfo structs:
+One of the limitations of an array-based DVD tracking model is that arrays are not resizable. When you define an array, you have to specify exactly how many elements make up your array. For example, this code defines an array of 5,000 DVDInfo structs:
 
 ```c
 #define kMaxDVDs 5000
-struct DVDInfo infoDVDs[kMaxDVDs];
+struct DVDInfo infoDVDs[kMaxDVDs]
 ```
 
-As mencioned, this array will take up 2,565,000 bytes f memory, whether you use the array to track 1 DVD or 5,000. If you know idvance exactly hoe many elements your array requires, arrays are just fine. In this case of this DVD tracking program, using an array just is not practical. For example, if your DVD collection consist entirely of  test DVD that came with your DVD burner and a rare bootleg of Gilligan's Island outtakes, a 5,000 DVDs ? No matter what number you pick for kMaxDVDs, there's always the chance that it won`t prove large enough.
+As mentioned, this array will take up 2,565,000 bytes f memory, whether you use the array to track 1 DVD or 5,000. If you know in advance exactly hoe many elements your array requires, arrays are just fine. In this case of this DVD tracking program, using an array just is not practical. For example, if your DVD collection consist entirely of  test DVD that came with your DVD burner and a rare bootleg of Gilligan's Island outtakes, a 5,000 DVDs ? No matter what number you pick for kMaxDVDs, there's always the chance that it won`t prove large enough.
 
 The problem here is that arrays are just not flexible enought to do what you want. Instead of trying to predict the amount of memory you will need in advance, you need a method that will give you a chunck of memory the exact size of a DVDInfo struct, as you need it. In more technical terms, you need to **allocate** and **manage** you own memory.
 
@@ -1753,3 +1753,45 @@ The **globalHeadPointer** points to the first (head) DVDInfo struct in your link
 
 Being defined outside of any function makes **globalHeadPointer** and **globalTailPointer** global. **Remember that global variables are always initialized to zero before your program begins running, so both of these pointers will be set to NULLwhen main() starts**.
 
+```c
+#include <stdio.h> // you can access to printf() an fgets()
+#include <stdlib.h> // you can access to malloc() and free()
+#include <string.h> // you can access to strlen() and strlcpy()
+#include <ctype.h> // you can access to isspace()
+#include "dvdTracker.h" // your own header
+
+char getCommand(void) {
+   exit(1);
+}
+struct DVDInfo * readStruct(void) {
+   exit(1);
+}
+void addToList(struct DVDInfo *dvdInfoPointer) {
+   exit(1);
+}
+void listDVDs(void) {
+   exit(1);
+}
+char * trimLine(char *line) {
+   exit(1);
+}
+
+static struct DVDInfo *globalHeadPointer, *globalTailPointer;
+
+int main(int argc, const char * argv[]) {
+    char command;
+    while ( (command = getCommand()) != 'q' ) {
+        switch (command) {
+            case 'n':
+                addToList( readStruct() );
+                break;
+            case 'l':
+                listDVDs();
+                break;
+        }
+        printf("\n---------------");
+    }
+    printf("Good bye... \n");
+    return 0;
+}
+```

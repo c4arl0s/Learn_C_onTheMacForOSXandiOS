@@ -7,8 +7,8 @@
 //
 
 #ifndef dvdTracker_h
-#define dvdTracker_h
 
+#define dvdTracker_h
 #define kMaxTitleLength 256
 #define kMaxCommentLength 256
 
