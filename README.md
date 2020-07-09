@@ -1692,4 +1692,64 @@ If you add a **prev** field to the struct and use it to point to the previous el
 
 As you gain more programming experience, you will want to check out some books on data structures. Three books well worth exploring are **Algorithms in C, parts 1-5 by Robert Sedgewick (Addison-Wesley 2001), Data Structures and C programs by Christopger J. Van Wik (Addison-Wesley 1990), and our personal favorite, Fundamental Algorithms, volume one of Donald Knuth's The Art of Computer Programming Series (Addison-Wesley 1997).
 
+# * [DVDTracker.xcodeproj (explained)]()
+
+DVDTracker implements Model B of your DVD tracking system, but instead of pre-allocating a huge array of DVDInfo structs, it is going to allocate memory only for the ones it needs as it goes. It uses a text-based menu, allowing you to quit, add a new DVD to the collection, or list all of the currently tracked DVDs.
+
+In console you will see:
+
+```console
+Enter command (q=quit, n=new, l=list):
+```
+
+# * [Stepping Trough the DVDTracker Source Code]()
+
+In main():
+
+```c
+#include <stdio.h> // you can access to printf() an fgets()
+#include <stdlib.h> // you can access to malloc() and free()
+#include <string.h> // you can access to strlen() and strlcpy()
+#include <ctype.h> // you can access to isspace()
+#include "dvdTracker.h" // your own header
+```
+
+- dvdTracker header
+
+```c
+#ifndef dvdTracker_h
+#define dvdTracker_h
+
+#define kMaxTitleLength 256
+#define kMaxCommentLength 256
+
+struct DVDInfo {
+    char rating;
+    char title[kMaxTitleLength];
+    char comment[kMaxCommentLength];
+    struct DVDInfo *next;
+};
+
+#endif /* dvdTracker_h */
+```
+
+- Prototype functions:
+
+```c
+char getCommand(void);
+struct dvdInfo *readStruct(void);
+void addToList(struct DVDInfo *dvdInfoPointer);
+void listDVDs(void);
+char *trimLine(char *line);
+```
+
+- Declare a global variables to keep track your linked list.
+
+```c
+static struct DVDInfo *globalHeadPointer, *globalTailPointer;
+```
+
+The **globalHeadPointer** points to the first (head) DVDInfo struct in your linked list. The **globalTailPointer** points to the last (tail) struct in your linked list. A tail pointer is not strictly necessary - you can always find the last (tail) struct in the list by starting at the head and traversing all of the links - but it makes some operations super simple, so this program ll use a tail pointer.
+
+Being defined outside of any function makes **globalHeadPointer** and **globalTailPointer** global. **Remember that global variables are always initialized to zero before your program begins running, so both of these pointers will be set to NULLwhen main() starts**.
 
